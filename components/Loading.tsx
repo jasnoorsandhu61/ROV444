@@ -1,3 +1,4 @@
+'use client';
 import { useState, useRef, useEffect } from 'react';
 
 interface LoadingProps {
@@ -5,41 +6,47 @@ interface LoadingProps {
 }
 
 export default function Loading({ onLoadingComplete }: LoadingProps) {
-  const [isVideoEnded, setIsVideoEnded] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
+    // Check both sessionStorage and global flag
+    const hasLoadedBefore =
+      typeof window !== 'undefined' &&
+      (sessionStorage.getItem('hasLoadedOnce') === 'true' ||
+        (window as any).hasLoadedOnce === true);
+
+    if (hasLoadedBefore) {
+      setIsLoading(false);
+      if (onLoadingComplete) onLoadingComplete();
+      return;
+    }
+
+    // If first load, play video
     const video = videoRef.current;
     if (video) {
-      // Ensure video starts playing
       video.play().catch(console.error);
     }
-  }, []);
+  }, [onLoadingComplete]);
 
-  const handleVideoEnd = () => {
-    setIsVideoEnded(true);
-    // Call the callback function if provided
-    if (onLoadingComplete) {
-      onLoadingComplete();
+  const finishLoading = () => {
+    // Mark as loaded globally and in sessionStorage
+    if (typeof window !== 'undefined') {
+      (window as any).hasLoadedOnce = true;
+      sessionStorage.setItem('hasLoadedOnce', 'true');
     }
+
+    setIsLoading(false);
+    if (onLoadingComplete) onLoadingComplete();
   };
 
-  const handleVideoError = () => {
-    console.error('Video failed to load');
-    // Fallback to showing the text loading
-    setIsVideoEnded(true);
-    if (onLoadingComplete) {
-      onLoadingComplete();
-    }
-  };
+  const handleVideoEnd = finishLoading;
+  const handleVideoError = finishLoading;
 
-  // If video has ended, don't render anything (let parent show main content)
-  if (isVideoEnded) {
-    return null;
-  }
+  if (!isLoading) return null;
 
   return (
-    <div className="h-screen w-screen flex items-center justify-center bg-black relative">
+    <div className="h-screen w-screen flex items-center justify-center bg-black relative z-[9999] fixed inset-0">
       <video
         ref={videoRef}
         className="w-full h-full object-cover"

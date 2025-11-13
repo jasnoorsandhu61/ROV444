@@ -3,54 +3,88 @@
 import { Instagram, Linkedin, Mail } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface NavigationDockProps {
   className?: string;
 }
 
 export function NavigationDock({ className }: NavigationDockProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
+  const router = useRouter();
 
   const links = [
-    { title: "home", to: "hero", isLink: false },
-    { title: "mixes", to: "latest-album", isLink: false },
-    { title: "gallery", to: "gallery", isLink: false },
-    { title: "services", to: "services", isLink: false },
+    { title: "home", to: "/#hero", isLink: true },
+    { title: "mixes", to: "/#latest-album", isLink: true },
+    { title: "gallery", to: "/#gallery", isLink: true },
+    { title: "services", to: "/#services", isLink: true },
     { title: "contact us", to: null, isLink: false },
   ];
 
-  const scrollToSection = (id: string) => {
-    const section = document.getElementById(id);
-    if (section) {
-      window.scrollTo({
-        top: section.offsetTop,
-        behavior: "smooth",
-      });
+  // Smooth scroll for hash navigation (same page)
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (hash) {
+        const section = document.getElementById(hash);
+        if (section) {
+          setTimeout(() => {
+            window.scrollTo({
+              top: section.offsetTop,
+              behavior: "smooth",
+            });
+          }, 100);
+        }
+      }
+    };
+
+    handleHashChange(); // scroll on load if hash exists
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
+
+  const handleNavigation = (path: string | null) => {
+    if (!path) {
+      setModalOpen(true);
+      return;
+    }
+
+    const currentPath = window.location.pathname + window.location.hash;
+
+    if (currentPath !== path) {
+      // Navigate to another page + section
+      router.push(path);
+    } else {
+      // Already on the same page, just scroll
+      const sectionId = path.split("#")[1];
+      if (sectionId) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          window.scrollTo({
+            top: section.offsetTop,
+            behavior: "smooth",
+          });
+        }
+      }
     }
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      const heroSection = document.getElementById("hero");
-      if (heroSection) {
-        const heroRect = heroSection.getBoundingClientRect();
-        if (heroRect.bottom <= 0) {
-          setIsVisible(true);
-        } else {
-          setIsVisible(false);
-        }
-      }
-
       const footer = document.querySelector("footer");
       if (footer) {
         const footerRect = footer.getBoundingClientRect();
-        if (footerRect.top <= window.innerHeight) {
-          setIsVisible(false);
-        }
+        setIsVisible(footerRect.top > window.innerHeight);
+      } else {
+        setIsVisible(true);
       }
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -58,28 +92,21 @@ export function NavigationDock({ className }: NavigationDockProps) {
   return (
     <>
       <div
-        className={`fixed bottom-6 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-md px-6 py-2 rounded-full border border-white/10 z-50 max-w-[90%] md:max-w-none transition-opacity duration-500 ${isVisible ? "opacity-100" : "opacity-0"} ${className || ""}`}
+        className={`fixed bottom-6 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-md px-6 py-2 rounded-full border border-white/10 z-50 max-w-[90%] md:max-w-none transition-opacity duration-500 ${
+          isVisible ? "opacity-100" : "opacity-0"
+        } ${className || ""}`}
       >
         <nav className="flex items-center space-x-2 justify-center">
           {links.map((link, index) => (
             <div key={link.title} className="flex items-center">
-              {link.isLink ? (
-                <Link
-                  href={link.to || "#"}
-                  className="px-2 py-1 text-white/80 hover:text-white transition-colors cursor-pointer text-[10px] md:text-sm uppercase tracking-wide"
-                  style={{ fontFamily: "Flight Maybe Maj, sans-serif" }}
-                >
-                  {link.title}
-                </Link>
-              ) : (
-                <button
-                  onClick={() => link.to ? scrollToSection(link.to) : setModalOpen(true)}
-                  className="px-2 py-1 text-white/80 hover:text-white transition-colors cursor-pointer text-[10px] md:text-sm uppercase tracking-wide"
-                  style={{ fontFamily: "Flight Maybe Maj, sans-serif" }}
-                >
-                  {link.title}
-                </button>
-              )}
+              <button
+                onClick={() => handleNavigation(link.to)}
+                className="px-2 py-1 text-white/80 hover:text-white transition-colors cursor-pointer text-[10px] md:text-sm uppercase tracking-wide"
+                style={{ fontFamily: "Flight Maybe Maj, sans-serif" }}
+              >
+                {link.title}
+              </button>
+
               {index < links.length - 1 && (
                 <span className="text-white/30 hidden md:inline">|</span>
               )}
@@ -87,7 +114,6 @@ export function NavigationDock({ className }: NavigationDockProps) {
           ))}
         </nav>
 
-        {/* Custom CSS for the font */}
         <style jsx>{`
           @font-face {
             font-family: "Flight Maybe Maj";
@@ -98,7 +124,6 @@ export function NavigationDock({ className }: NavigationDockProps) {
         `}</style>
       </div>
 
-      {/* Modal with consistent font */}
       {modalOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50">
           <div
