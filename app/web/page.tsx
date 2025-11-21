@@ -23,9 +23,11 @@ export default function Page() {
       </AnimatedSection>
 
       {/* Added id="gallery" for the NavDoc link */}
-      <AnimatedSection id="gallery">
-        <WorkSection />
-      </AnimatedSection>
+      <div id="gallery">
+        <AnimatedSection>
+          <WorkSection />
+        </AnimatedSection>
+      </div>
 
       <AnimatedSection>
         <WhoWeBuildFor />
