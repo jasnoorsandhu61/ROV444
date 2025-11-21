@@ -1,249 +1,307 @@
 "use client";
 
-import { Waves, Palette } from "lucide-react";
-import { motion, useAnimation, useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import React, { useState } from "react";
+import { User, Video, Headphones, Cpu, ExternalLink } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-export default function Services() {
-  const router = useRouter();
-  const ref = useRef<HTMLDivElement>(null);
-  const controls = useAnimation();
-  const isInView = useInView(ref, { once: true });
+interface ServiceFolderProps {
+  title: string;
+  icon: React.ReactNode;
+  description?: string;
+  serviceId: string;
+  onFlip: (id: string) => void;
+}
 
-  useEffect(() => {
-    if (isInView) controls.start("visible");
-  }, [isInView, controls]);
-
-  const [flippedCard, setFlippedCard] = useState<string | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const sectionVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 1.2, ease: "easeOut" },
-    },
-  };
-
-  const titleVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 1, ease: "easeOut", delay: 0.5 },
-    },
-  };
-
-  const handleFlip = (id: string) => {
-    setFlippedCard((prev) => (prev === id ? null : id));
-  };
-
-  const handleServiceClick = (service: string) => {
-    switch (service) {
-      case "mixing":
-        router.push("/about");
-        break;
-      case "album-art":
-        router.push("/vision");
-        break;
-      case "web":
-        router.push("/web");
-        break;
-      default:
-        setModalOpen(true);
-    }
-  };
-
-  const services = [
-    {
-      id: "mixing",
-      title: "Mixing & Mastering",
-      description:
-        "Transform your raw tracks into professional, radio-ready productions.",
-      color: "bg-purple-600 hover:bg-purple-700",
-      icon: <Waves className="w-8 h-8 text-purple-400" />,
-    },
-    {
-      id: "album-art",
-      title: "Album Artwork",
-      description: "Make a visual impact with stunning album artwork.",
-      color: "bg-teal-600 hover:bg-teal-700",
-      icon: <Palette className="w-8 h-8 text-teal-400" />,
-    },
-    {
-      id: "web",
-      title: "Web Optimization",
-      description:
-        "Turning clicks into connections with seamless and high impact designs.",
-      color: "bg-yellow-600 hover:bg-yellow-700",
-      icon: <Waves className="w-8 h-8 text-yellow-400" />,
-    },
-  ];
-
+const ServiceFolder: React.FC<ServiceFolderProps> = ({ title, icon, description, serviceId, onFlip }) => {
   return (
-    <>
-      <motion.section
-        ref={ref}
-        id="services"
-        className="py-20 px-4 md:px-8 bg-black relative"
-        initial="hidden"
-        animate={controls}
-        variants={sectionVariants}
-      >
-        {/* Title */}
-        <div className="relative z-10 text-center">
-          <motion.h2
-            className="text-4xl font-bold mb-16 text-white"
-            variants={titleVariants}
-            style={{ fontFamily: "Flight Maybe Maj, sans-serif" }}
-          >
-            OUR SERVICES
-          </motion.h2>
+    <div className="group relative">
+      {/* Glass container with shimmer effect */}
+      <div className="relative bg-black/50 backdrop-blur-md border border-white/10 rounded-3xl p-8 h-[280px] flex flex-col items-center justify-center transition-all duration-500 hover:bg-black/40 hover:border-white/20 overflow-hidden">
+
+        {/* Shimmer effect on hover */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300">
+          <div className="shimmer-effect"></div>
         </div>
 
-        {/* Grid */}
-        <motion.div
-          className="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 relative z-10 font-proximanova"
-          variants={sectionVariants}
-        >
-          {services.map((service) => (
-            <div key={service.id} className="flex justify-center">
-              <div
-                className={`flip-folder ${flippedCard === service.id ? "flipped" : ""}`}
-                onClick={() => handleFlip(service.id)}
-              >
-                <div className="flip-folder-inner">
-                  {/* FRONT SIDE */}
-                  <div className="flip-folder-front group">
-                    <div className="file relative w-60 h-40 origin-bottom cursor-pointer">
-                      <div className="work-5 bg-amber-600 w-full h-full origin-top rounded-2xl rounded-tl-none group-hover:shadow-[0_20px_40px_rgba(0,0,0,.2)] transition-all ease duration-300 relative after:absolute after:content-[''] after:bottom-[99%] after:left-0 after:w-20 after:h-4 after:bg-amber-600 after:rounded-t-2xl before:absolute before:content-[''] before:-top-[15px] before:left-[75.5px] before:w-4 before:h-4 before:bg-amber-600 before:[clip-path:polygon(0_35%,0%_100%,50%_100%);]" />
-                      <div className="work-4 absolute inset-1 bg-zinc-400 rounded-2xl transition-all ease duration-300 origin-bottom select-none group-hover:[transform:rotateX(-20deg)]" />
-                      <div className="work-3 absolute inset-1 bg-zinc-300 rounded-2xl transition-all ease duration-300 origin-bottom group-hover:[transform:rotateX(-30deg)]" />
-                      <div className="work-2 absolute inset-1 bg-zinc-200 rounded-2xl transition-all ease duration-300 origin-bottom group-hover:[transform:rotateX(-38deg)]" />
-                      <div className="work-1 absolute bottom-0 bg-gradient-to-t from-amber-500 to-amber-400 w-full h-[156px] rounded-2xl rounded-tr-none after:absolute after:content-[''] after:bottom-[99%] after:right-0 after:w-[146px] after:h-[16px] after:bg-amber-400 after:rounded-t-2xl before:absolute before:content-[''] before:-top-[10px] before:right-[142px] before:size-3 before:bg-amber-400 before:[clip-path:polygon(100%_14%,50%_100%,100%_100%);] transition-all ease duration-300 origin-bottom flex items-end group-hover:shadow-[inset_0_20px_40px_#fbbf24,_inset_0_-20px_40px_#d97706] group-hover:[transform:rotateX(-46deg)_translateY(1px)]" />
-                    </div>
-                    <p className="text-lg text-gray-300 font-semibold mt-3">
-                      {service.title}
-                    </p>
-                  </div>
+        {/* Main content with folder and text side by side */}
+        <div className="relative z-10 flex items-center gap-6 mb-6">
+          {/* 3D Flip Container */}
+          <div className="flip-container w-48 h-36 flex-shrink-0 group-folder" onClick={() => onFlip(serviceId)}>
+            <div className="flip-card w-full h-full">
+              {/* Front Side - Folder */}
+              <div className="flip-card-front">
+                <div className="relative w-full h-full">
+                  {/* Folder tab (top flap) */}
+                  <div className="absolute -top-3 left-0 w-32 h-10 bg-[#a9a495] rounded-t-2xl"></div>
 
-                  {/* BACK SIDE */}
-                  <div className="flip-folder-back bg-amber-600 text-white flex flex-col justify-center items-center rounded-2xl border border-amber-500 px-4">
-                    <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-                    <p className="text-sm text-center mb-4">
-                      {service.description}
-                    </p>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleServiceClick(service.id);
-                      }}
-                      className={`mt-2 px-6 py-2 rounded-full transition-colors ${service.color}`}
-                    >
-                      Learn More
-                    </button>
+                  {/* Main folder body */}
+                  <div className="relative w-full h-full bg-[#a9a495] rounded-3xl shadow-2xl flex items-center justify-center">
+                    {/* Icon on folder */}
+                    <div className="text-white/90">
+                      {icon}
+                    </div>
+
+                    {/* Folder depth/shadow effect */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-3xl"></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Back Side - Redirect Icon */}
+              <div className="flip-card-back">
+                <div className="relative w-full h-full">
+                  {/* Folder tab (top flap) */}
+                  <div className="absolute -top-3 left-0 w-32 h-10 bg-[#a9a495] rounded-t-2xl"></div>
+
+                  {/* Main folder body */}
+                  <div className="relative w-full h-full bg-[#a9a495] rounded-3xl shadow-2xl flex items-center justify-center">
+                    {/* Redirect/External Link Icon */}
+                    <div className="text-white/90">
+                      <ExternalLink className="w-20 h-20" strokeWidth={1.5} />
+                    </div>
+
+                    {/* Folder depth/shadow effect */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-3xl"></div>
                   </div>
                 </div>
               </div>
             </div>
-          ))}
-        </motion.div>
-
-        {/* Modal */}
-        {modalOpen && (
-          <div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50">
-            <div className="bg-black text-white p-8 rounded-lg shadow-lg text-center w-96 relative border border-gray-700 font-proximanova">
-              <button
-                className="absolute top-2 right-2 text-gray-400 hover:text-gray-200"
-                onClick={() => setModalOpen(false)}
-              >
-                ✕
-              </button>
-              <h3 className="text-xl font-bold mb-4">Contact Us</h3>
-              <p className="text-gray-400 mb-6">
-                Reach us on our social platforms or email!
-              </p>
-              <div className="space-y-3">
-                <a
-                  href="mailto:rangeofview@rovstudios.com"
-                  className="block bg-gray-800 hover:bg-gray-700 rounded-lg py-2"
-                >
-                  Email Us
-                </a>
-                <a
-                  href="https://www.instagram.com/rangeofviewstudios/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block bg-gray-800 hover:bg-gray-700 rounded-lg py-2"
-                >
-                  Instagram
-                </a>
-                <a
-                  href="https://www.linkedin.com/company/range-of-view-studios/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block bg-gray-800 hover:bg-gray-700 rounded-lg py-2"
-                >
-                  LinkedIn
-                </a>
-              </div>
-            </div>
           </div>
-        )}
-      </motion.section>
 
-      {/* CSS for Folder Flip Animation */}
-      <style jsx global>{`
-        .font-proximanova {
-          font-family: "Proxima Nova", sans-serif;
-        }
-        .custom-font-flight {
-          font-family: "Flight Maybe", sans-serif;
+          {/* Text to the right of folder */}
+          <p className="text-white/60 text-sm uppercase tracking-wider" style={{ fontFamily: "Futura, sans-serif" }}>
+            Projects starting from
+          </p>
+        </div>
+
+        {/* Service title */}
+        <h3
+          className="text-white/90 text-lg md:text-xl font-medium text-center uppercase tracking-wider relative z-10"
+          style={{ fontFamily: "Futura, sans-serif" }}
+        >
+          {title}
+        </h3>
+
+      </div>
+
+      {/* Custom CSS for shimmer effect */}
+      <style jsx>{`
+        @keyframes shimmer {
+          0% {
+            transform: translateX(-150%) rotate(15deg);
+          }
+          100% {
+            transform: translateX(250%) rotate(15deg);
+          }
         }
 
-        .flip-folder {
-          width: 240px;
-          height: 200px;
+        .shimmer-effect {
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 60%;
+          height: 200%;
+          background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.25) 50%,
+            rgba(255, 255, 255, 0) 100%
+          );
+          filter: blur(10px);
+          animation: shimmer 2.5s ease-in-out infinite;
+        }
+
+        /* 3D Flip Animation Styles */
+        .flip-container {
           perspective: 1000px;
-          cursor: pointer;
         }
 
-        .flip-folder-inner {
+        .flip-card {
           position: relative;
-          width: 100%;
-          height: 100%;
-          transition: transform 0.9s ease;
+          transition: transform 0.8s;
           transform-style: preserve-3d;
         }
 
-        .flip-folder.flipped .flip-folder-inner {
-          transform: rotateY(180deg);
+        .group-folder:hover .flip-card {
+          transform: rotateX(180deg);
         }
 
-        .flip-folder-front,
-        .flip-folder-back {
+        .flip-card-front,
+        .flip-card-back {
           position: absolute;
           width: 100%;
           height: 100%;
-          border-radius: 1rem;
-          -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-direction: column;
+          -webkit-backface-visibility: hidden;
+          top: 0;
+          left: 0;
         }
 
-        .flip-folder-front {
-          background: transparent;
+        .flip-card-back {
+          transform: rotateX(180deg);
         }
 
-        .flip-folder-back {
-          transform: rotateY(180deg);
+        /* Reset any default pseudo-elements that might be causing the boxes */
+        .group *,
+        .group *::before,
+        .group *::after {
+          box-sizing: border-box;
+        }
+
+        .group *::before,
+        .group *::after {
+          content: none !important;
+        }
+
+        @font-face {
+          font-family: "Flight Maybe Maj";
+          src: url("/fonts/Flight Maybe Maj.ttf") format("truetype");
+          font-weight: normal;
+          font-style: normal;
+        }
+
+        @font-face {
+          font-family: "ZRTW Bokerough";
+          src: url("/fonts/ZRTW-BokeRoughPersonalUse.otf") format("opentype");
+          font-weight: normal;
+          font-style: normal;
         }
       `}</style>
-    </>
+    </div>
+  );
+};
+
+export default function Services() {
+  const router = useRouter();
+  const [flippedCard, setFlippedCard] = useState<string | null>(null);
+
+  const handleFlip = (id: string) => {
+    setFlippedCard((prev) => (prev === id ? null : id));
+
+    // Navigate based on service
+    setTimeout(() => {
+      switch (id) {
+        case "web":
+          router.push("/web");
+          break;
+        case "video":
+          router.push("/vision");
+          break;
+        case "sound":
+          router.push("/about");
+          break;
+        case "ai":
+          router.push("/ctrla");
+          break;
+      }
+    }, 400);
+  };
+
+  const services = [
+    {
+      id: "web",
+      title: "Web Design",
+      icon: <User className="w-16 h-16 text-white/80" />,
+      description: "Custom websites & digital experiences"
+    },
+    {
+      id: "video",
+      title: "Video Production",
+      icon: <Video className="w-16 h-16 text-white/80" />,
+      description: "Cinematic content & aerial media"
+    },
+    {
+      id: "sound",
+      title: "Sound Engineering",
+      icon: <Headphones className="w-16 h-16 text-white/80" />,
+      description: "Audio production & mixing"
+    },
+    {
+      id: "ai",
+      title: "AI Workflows",
+      icon: <Cpu className="w-16 h-16 text-white/80" />,
+      description: "Custom automation solutions"
+    }
+  ];
+
+  return (
+    <section className="min-h-screen bg-black py-20 px-6 relative">
+      {/* Decorative stars - Big, bright, and on top */}
+      {/* Top right star */}
+      <img
+        src="/star.svg"
+        alt="Star"
+        className="absolute top-16 right-20 w-32 h-32 opacity-90 z-50 pointer-events-none"
+        style={{
+          animation: 'float 6s ease-in-out infinite'
+        }}
+      />
+
+      {/* Middle center star */}
+      <img
+        src="/star2.svg"
+        alt="Star"
+        className="absolute top-[40%] left-1/2 -translate-x-1/2 w-28 h-28 opacity-85 z-50 pointer-events-none"
+        style={{
+          animation: 'float 7s ease-in-out infinite'
+        }}
+      />
+
+      {/* Bottom left question mark */}
+      <img
+        src="/ques.svg"
+        alt="Question"
+        className="absolute bottom-28 left-16 w-28 h-28 opacity-90 z-50 pointer-events-none"
+        style={{
+          animation: 'float 8s ease-in-out infinite'
+        }}
+      />
+
+      {/* Bottom right star */}
+      <img
+        src="/star3.svg"
+        alt="Star"
+        className="absolute bottom-20 right-16 w-32 h-32 opacity-85 z-50 pointer-events-none"
+        style={{
+          animation: 'float 6.5s ease-in-out infinite'
+        }}
+      />
+
+      <div className="max-w-6xl mx-auto relative">
+        <style jsx>{`
+          @keyframes float {
+            0%, 100% {
+              transform: translate(-50%, 0px);
+            }
+            50% {
+              transform: translate(-50%, -20px);
+            }
+          }
+        `}</style>
+        {/* Section header */}
+        <div className="text-center mb-16">
+          <h2
+            className="text-4xl md:text-6xl text-white/90 uppercase tracking-wider mb-4"
+            style={{ fontFamily: "ZRTW Bokerough, sans-serif" }}
+          >
+            Our Services
+          </h2>
+        </div>
+
+        {/* 2x2 Grid of service folders */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
+          {services.map((service) => (
+            <ServiceFolder
+              key={service.id}
+              serviceId={service.id}
+              title={service.title}
+              icon={service.icon}
+              description={service.description}
+              onFlip={handleFlip}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

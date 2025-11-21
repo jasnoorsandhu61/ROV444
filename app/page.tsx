@@ -72,22 +72,22 @@ export default function Home() {
     <>
       <GlobalStyle />
       <main className="min-h-screen bg-black text-white">
-       
+
 
         <section id="hero">
           <Hero />
         </section>
 
 
-        <section id="latest-album">
+        {/*<section id="latest-album">
           <MusicPlayer />
-        </section>
+        </section>*/}
 
-        <section id="gallery">
+        {/* <section id="gallery">
           <Gallery />
-        </section>
+        </section> */}
 
-        <img src="/backgroundimage.webp" alt="Page Tear Image"/>
+        {/* <img src="/backgroundimage.webp" alt="Page Tear Image" /> */}
 
         <section id="services">
           <Services />
@@ -95,7 +95,7 @@ export default function Home() {
 
         <DigiMag />
 
-        <Card />
+        {/* <Card /> */}
 
         <Carousel />
 
@@ -103,7 +103,7 @@ export default function Home() {
 
         <NavigationDock className={isScrolled ? "scrolled" : ""} />
 
-        
+
         {/*
         <TestHero />
 

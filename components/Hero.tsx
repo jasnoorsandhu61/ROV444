@@ -175,7 +175,7 @@ const Heading = styled(SlideInTop)`
   top: 20px;
   right: 20px;
   text-align: right;
-  font-family: 'FlightMaybeMaj', sans-serif;
+  font-family: 'Futura', sans-serif;
   z-index: 2;
 
   @media (max-width: 768px) {

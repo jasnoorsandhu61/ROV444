@@ -47,7 +47,8 @@ const Footer = () => {
           <div className="relative py-16 flex flex-col items-start justify-between overflow-hidden col-span-12 md:col-span-3">
             <div className="relative z-10 flex flex-col items-center justify-between text-center px-4">
               <p
-                className="uppercase tracking-[4px] anton text-4xl text-[#f8f2e5] pt-5"
+                className="uppercase tracking-[4px] text-4xl text-[#f8f2e5] pt-5"
+                style={{ fontFamily: 'Futura, sans-serif' }}
               >
                 ELEVATE YOUR <br /> BRAND TODAY.
               </p>
@@ -61,7 +62,8 @@ const Footer = () => {
               />
 
               <h2
-                className="uppercase text-5xl anton text-[#f8f2e5] mb-6 tracking-widest"
+                className="uppercase text-5xl text-[#f8f2e5] mb-6 tracking-widest"
+                style={{ fontFamily: 'Futura, sans-serif' }}
               >
                 SERVICES
               </h2>
@@ -86,7 +88,8 @@ const Footer = () => {
           >
             <div className="relative z-10 flex flex-col items-center">
               <h3
-                className="text-[#d0cdbc] text-5xl tracking-[3px] uppercase mb-5 sink"
+                className="text-[#d0cdbc] text-5xl tracking-[3px] uppercase mb-5"
+                style={{ fontFamily: 'Futura, sans-serif' }}
               >
                 FOLLOW US
               </h3>

@@ -43,8 +43,8 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
         const style = document.createElement("style");
         style.textContent = `
             @font-face {
-                font-family: 'Flight Maybe Maj';
-                src: url('/fonts/Flight Maybe Maj.ttf') format('truetype');
+                font-family: 'Futura';
+                src: local('Futura'), local('Futura-Medium');
             }
         `;
         document.head.appendChild(style);
@@ -124,7 +124,7 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
                         ref={(el) => (wordRefs.current[index] = el)}
                         className="relative text-[4rem] font-black cursor-pointer"
                         style={{
-                            fontFamily: "'Flight Maybe Maj', sans-serif",
+                            fontFamily: "'Futura', sans-serif",
                             filter: isActive
                                 ? `blur(0px)`
                                 : `blur(${blurAmount}px)`,
