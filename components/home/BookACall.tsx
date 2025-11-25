@@ -2,7 +2,7 @@
 import { motion, Variants } from "framer-motion";
 import { Earth, MoveUpRight } from "lucide-react";
 import { useState } from "react";
-import BookingModal from "./BookingModal.tsx";
+import BookingModal from "./BookingModal";
 
 const BookACall = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -76,7 +76,7 @@ const BookACall = () => {
       </motion.h2>
 
       <div className="flex justify-center">
-        <button style={{fontFamily:"futura"}}  onMouseOver={() => setIsModalOpen(true)} className="relative overflow-hidden bg-[#393632] flex items-center justify-center cursor-pointer text-white rounded-full py-8 px-12 text-3xl font-semibold tracking-widest group">
+        <button style={{ fontFamily: "futura" }} onMouseOver={() => setIsModalOpen(true)} className="relative overflow-hidden bg-[#393632] flex items-center justify-center cursor-pointer text-white rounded-full py-8 px-12 text-3xl font-semibold tracking-widest group">
           <span className="absolute inset-0 bg-[#bdbdb0]/30 origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-700 ease-in-out"></span>
           <span className="relative overflow-hidden flex items-center leading-none h-[1.2em]">
             <span className="block group-hover:-translate-y-full transition-transform duration-700 ease-in-out">
@@ -119,7 +119,7 @@ const BookACall = () => {
         </div>
       </div>
 
- <BookingModal
+      <BookingModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />
