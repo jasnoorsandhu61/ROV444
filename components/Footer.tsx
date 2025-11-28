@@ -53,13 +53,16 @@ const Footer = () => {
                 ELEVATE YOUR <br /> BRAND TODAY.
               </p>
 
-              <Image
-                src="/assets/images/ring.png"
-                alt="Decorative ring"
-                width={200}
-                height={200}
-                className="h-[200px] w-auto object-contain"
-              />
+
+                {/* Replace ring image with video */}
+                <video
+                  src="/video/ring_footer.webm"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="h-[200px] w-auto object-contain"
+                />
 
               <h2
                 className="uppercase text-5xl text-[#f8f2e5] mb-6 tracking-widest"
