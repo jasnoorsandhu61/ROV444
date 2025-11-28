@@ -10,7 +10,8 @@ const projects = [
     category: "Architecture & Engineering",
     year: "2024",
     tags: ["Design", "Development"],
-    img: "/assets/images/gallery4.webp",
+    img: "/video/bando video website.mp4",
+    type: "video",
   },
   {
     id: 2,
@@ -18,8 +19,8 @@ const projects = [
     category: "Branding & UI",
     year: "2023",
     tags: ["Design", "UX"],
-    img: "/assets/images/gallery3.webp",
-
+    img: "/video/2.mp4",
+    type: "video",
   },
   {
     id: 3,
@@ -28,11 +29,11 @@ const projects = [
     year: "2022",
     tags: ["Research", "UI"],
     img: "/assets/images/gallery2.webp",
-
+    type: "image",
   },
 ];
 
-const WorkSection = () => {
+const ShowcaseSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeCount, setActiveCount] = useState(1);
   
@@ -86,12 +87,22 @@ const WorkSection = () => {
             key={p.id}
             className="relative lg:h-[500px] h-[400px] rounded-3xl overflow-hidden"
           >
-            {/* Background image */}
-            <img
-              src={p.img}
-              alt="bg-img"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
+            {/* Background image or video */}
+            {p.type === "video" ? (
+              <video
+                src={p.img}
+                autoPlay
+                muted
+                loop
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            ) : (
+              <img
+                src={p.img}
+                alt="bg-img"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            )}
             {/* Content overlay */}
             <div className="relative z-10 h-full w-full bg-black/45 p-4 flex flex-col justify-end">
               <h3 className="text-white text-2xl font-bold">{p.title}</h3>
@@ -116,4 +127,4 @@ const WorkSection = () => {
     </div>
   );
 }
-export default WorkSection
+export default ShowcaseSection

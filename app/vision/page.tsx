@@ -1,10 +1,10 @@
-import ContactSection from "@/components/vision/ContactSection";
-import FlightProcess from "@/components/vision/FlightProcess";
-import HeroSection from "@/components/vision/HeroSection";
-import TakeWork from "@/components/vision/TakeWork";
-import FAQSection from "@/components/vision/VisionFaq";
-import MissingSection from "@/components/vision/VisionMixing";
-import WhoWeFlyWith from "@/components/vision/WhoWeFlyWith";
+import ContactSection from "@/components/aerielPage/ContactSection";
+import FlightProcess from "@/components/aerielPage/FlightProcess";
+import HeroSection from "@/components/aerielPage/HeroSection";
+import TakeWork from "@/components/aerielPage/TakeWork";
+import FAQSection from "@/components/aerielPage/VisionFaq";
+import MissingSection from "@/components/aerielPage/VisionMixing";
+import WhoWeFlyWith from "@/components/aerielPage/WhoWeFlyWith";
 import { NavigationDock } from "@/components/NavDoc";
 
 
