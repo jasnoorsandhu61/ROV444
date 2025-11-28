@@ -188,7 +188,7 @@ export default function Services() {
           router.push("/vision");
           break;
         case "sound":
-          router.push("/about");
+          router.push("/sound");
           break;
         case "ai":
           router.push("/ctrla");

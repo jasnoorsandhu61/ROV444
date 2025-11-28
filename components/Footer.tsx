@@ -74,9 +74,15 @@ const Footer = () => {
               <ul
                 className="flex flex-col items-center futura gap-2 md:text-2xl text-lg tracking-[2px] text-[#f8f2e5]"
               >
-                <li className="hover:text-white transition-colors duration-300">SOUND</li>
-                <li className="hover:text-white transition-colors duration-300">WEB-SOLUTIONS</li>
-                <li className="hover:text-white transition-colors duration-300">DRONE FOOTAGE</li>
+                <li>
+                  <a href="/sound" className="hover:text-white transition-colors duration-300">SOUND</a>
+                </li>
+                <li>
+                  <a href="/web" className="hover:text-white transition-colors duration-300">WEB-SOLUTIONS</a>
+                </li>
+                <li>
+                  <a href="/aeriel" className="hover:text-white transition-colors duration-300">DRONE FOOTAGE</a>
+                </li>
                 <li className="hover:text-white transition-colors duration-300">AI SOLUTIONS</li>
               </ul>
             </div>

@@ -2,7 +2,7 @@
 import { motion, Variants } from "framer-motion";
 import { Earth, MoveUpRight } from "lucide-react";
 import { useState } from "react";
-import BookingModal from "../home/BookingModal";
+import BookingModal from "../Web-Dev/BookingModal";
 
 const BookACall = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

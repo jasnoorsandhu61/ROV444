@@ -99,7 +99,6 @@ export default function Home() {
 
         <Carousel />
 
-        <Footer />
 
         <NavigationDock className={isScrolled ? "scrolled" : ""} />
 
