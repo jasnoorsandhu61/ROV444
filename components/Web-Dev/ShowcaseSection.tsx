@@ -6,30 +6,21 @@ import { useScroll, useMotionValueEvent } from "framer-motion";
 const projects = [
   {
     id: 1,
-    title: "Entuitive Engineering",
-    category: "Architecture & Engineering",
-    year: "2024",
-    tags: ["Design", "Development"],
+    title: "THE BANDO",
+    category: "Website Redesign & Immersive Branding",
+    year: "2025",
+    tags: ["Design", "Development, Branding, UI/UX"],
     img: "/video/bando video website.mp4",
     type: "video",
   },
   {
     id: 2,
-    title: "Another Project",
-    category: "Branding & UI",
-    year: "2023",
+    title: "Aysegul Ikna",
+    category: "Website Design & Development",
+    year: "2025",
     tags: ["Design", "UX"],
-    img: "/video/2.mp4",
+    img: "/video/Aysegul Ikna website.mp4",
     type: "video",
-  },
-  {
-    id: 3,
-    title: "Third Project",
-    category: "UI/UX Design",
-    year: "2022",
-    tags: ["Research", "UI"],
-    img: "/assets/images/gallery2.webp",
-    type: "image",
   },
 ];
 
