@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import Loading from "@/components/Loading";
-import Hero from "@/components/Hero";
+import HeroWithAnimation from "@/components/HeroWithAnimation";
 import Services from "@/components/Services";
 import MusicPlayer from "@/components/MusicPlayer";
 import Footer from "@/components/Footer";
@@ -33,6 +33,15 @@ export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    // Prevent scrolling during loading
+    if (isLoading) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.height = '100vh';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.height = '';
+    }
+
     // Improved loading mechanism
     const handleLoad = () => {
       setIsLoading(false);
@@ -55,8 +64,10 @@ export default function Home() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("load", handleLoad);
+      document.body.style.overflow = '';
+      document.body.style.height = '';
     };
-  }, []);
+  }, [isLoading]);
 
   // Loading state with better transition
   if (isLoading) {
@@ -73,9 +84,8 @@ export default function Home() {
       <GlobalStyle />
       <main className="min-h-screen bg-black text-white">
 
-
-        <section id="hero">
-          <Hero />
+        <section id="hero-with-animation">
+          <HeroWithAnimation />
         </section>
 
 
