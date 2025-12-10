@@ -148,10 +148,15 @@ const HeroWithAnimation: React.FC = () => {
     const creativeRef = useRef<HTMLDivElement>(null);
     const wordRef = useRef<HTMLDivElement>(null);
     const [showHero, setShowHero] = useState(true);
-    const [currentWord, setCurrentWord] = useState("Studio");
+    const [currentWord, setCurrentWord] = useState("Identity");
     const [dimOpacity, setDimOpacity] = useState(0);
 
     useEffect(() => {
+        // Reset scroll position and ScrollTrigger on mount
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        ScrollTrigger.refresh();
+        
         const canvas = canvasRef.current;
         const section = sectionRef.current;
         if (!canvas || !section) return;
@@ -201,15 +206,15 @@ const HeroWithAnimation: React.FC = () => {
                     const progress = self.progress;
 
                     // Determine which word to show based on scroll progress
-                    // 0-30%: "Studio", 30-65%: "Design", 65-95%: "Brand", 95-100%: fade out
+                    // 0-30%: "Identity", 30-65%: "Systems", 65-95%: "Strategy", 95-100%: fade out
                     if (progress < 0.3) {
-                        setCurrentWord("Studio");
+                        setCurrentWord("Identity");
                         setDimOpacity(0);
                     } else if (progress < 0.65) {
-                        setCurrentWord("Design");
+                        setCurrentWord("Systems");
                         setDimOpacity(0);
                     } else if (progress < 0.95) {
-                        setCurrentWord("Brand");
+                        setCurrentWord("Strategy");
                         setDimOpacity(0);
                     } else {
                         // Fade out from progress 0.95 to 1.0

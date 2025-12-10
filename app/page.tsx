@@ -5,6 +5,7 @@ import { createGlobalStyle } from "styled-components";
 import Loading from "@/components/Loading";
 import HeroWithAnimation from "@/components/HeroWithAnimation";
 import Services from "@/components/Services";
+import ElevateSection from "@/components/ElevateSection";
 import MusicPlayer from "@/components/MusicPlayer";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
@@ -32,6 +33,12 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  // Reset scroll on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+  }, []);
+
   useEffect(() => {
     // Prevent scrolling during loading
     if (isLoading) {
@@ -40,6 +47,12 @@ export default function Home() {
     } else {
       document.body.style.overflow = '';
       document.body.style.height = '';
+      // Reset scroll position to top when loading finishes
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }, 100);
     }
 
     // Improved loading mechanism
@@ -102,6 +115,8 @@ export default function Home() {
         <section id="services">
           <Services />
         </section>
+
+        <ElevateSection />
 
         <DigiMag />
 
