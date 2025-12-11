@@ -75,20 +75,22 @@ const TextOverlay = styled.div<{ $isVisible: boolean }>`
 
 const CreativeText = styled.div`
   color: white;
-  font-size: 4rem;
+  font-family: 'sink', sans-serif;
+  font-size: 4.5rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   text-align: right;
   flex: 1;
   max-width: 50%;
   
   @media (max-width: 768px) {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
   }
 `;
 
 const ChangingWord = styled.div`
   color: white;
+  font-family: 'Norwige Light', sans-serif;
   font-size: 4rem;
   font-weight: 300;
   letter-spacing: 0.05em;
@@ -128,7 +130,8 @@ const Heading = styled.div`
   top: 20px;
   right: 20px;
   text-align: right;
-  font-family: 'Futura', sans-serif;
+  font-family: 'Norwige Light', sans-serif;
+  letter-spacing: 0.1em;
   z-index: 20;
   pointer-events: auto;
 
@@ -143,145 +146,145 @@ const Heading = styled.div`
 `;
 
 const HeroWithAnimation: React.FC = () => {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const sectionRef = useRef<HTMLElement>(null);
-    const creativeRef = useRef<HTMLDivElement>(null);
-    const wordRef = useRef<HTMLDivElement>(null);
-    const [showHero, setShowHero] = useState(true);
-    const [currentWord, setCurrentWord] = useState("Identity");
-    const [dimOpacity, setDimOpacity] = useState(0);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const creativeRef = useRef<HTMLDivElement>(null);
+  const wordRef = useRef<HTMLDivElement>(null);
+  const [showHero, setShowHero] = useState(true);
+  const [currentWord, setCurrentWord] = useState("Identity");
+  const [dimOpacity, setDimOpacity] = useState(0);
 
-    useEffect(() => {
-        // Reset scroll position and ScrollTrigger on mount
-        window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
-        ScrollTrigger.refresh();
-        
-        const canvas = canvasRef.current;
-        const section = sectionRef.current;
-        if (!canvas || !section) return;
+  useEffect(() => {
+    // Reset scroll position and ScrollTrigger on mount
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    ScrollTrigger.refresh();
 
-        const context = canvas.getContext('2d');
-        if (!context) return;
+    const canvas = canvasRef.current;
+    const section = sectionRef.current;
+    if (!canvas || !section) return;
 
-        // Set canvas dimensions
-        canvas.width = 1920;
-        canvas.height = 1080;
+    const context = canvas.getContext('2d');
+    if (!context) return;
 
-        const frameCount = 652;
-        const currentFrame = (index: number) => {
-            return `/assets/SpiralShotHorizontalV2Frames/SpiralShotHorizontal60fpsV2_${index.toString().padStart(5, '0')}.webp`;
-        };
+    // Set canvas dimensions
+    canvas.width = 1920;
+    canvas.height = 1080;
 
-        const images: HTMLImageElement[] = [];
-        const animation = {
-            frame: 0
-        };
+    const frameCount = 652;
+    const currentFrame = (index: number) => {
+      return `/assets/SpiralShotHorizontalV2Frames/SpiralShotHorizontal60fpsV2_${index.toString().padStart(5, '0')}.webp`;
+    };
 
-        // Preload all images
-        for (let i = 0; i < frameCount; i++) {
-            const img = new Image();
-            img.src = currentFrame(i);
-            images.push(img);
+    const images: HTMLImageElement[] = [];
+    const animation = {
+      frame: 0
+    };
+
+    // Preload all images
+    for (let i = 0; i < frameCount; i++) {
+      const img = new Image();
+      img.src = currentFrame(i);
+      images.push(img);
+    }
+
+    // Render function
+    function render() {
+      if (!context || !canvas) return;
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      if (images[animation.frame] && images[animation.frame].complete) {
+        context.drawImage(images[animation.frame], 0, 0, canvas.width, canvas.height);
+      }
+    }
+
+    // GSAP scroll animation with pinning
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        scrub: 0.5,
+        pin: true,
+        start: 'top top',
+        end: '+=500%',
+        onUpdate: (self) => {
+          const progress = self.progress;
+
+          // Determine which word to show based on scroll progress
+          // 0-30%: "Identity", 30-65%: "Systems", 65-95%: "Strategy", 95-100%: fade out
+          if (progress < 0.3) {
+            setCurrentWord("Identity");
+            setDimOpacity(0);
+          } else if (progress < 0.65) {
+            setCurrentWord("Systems");
+            setDimOpacity(0);
+          } else if (progress < 0.95) {
+            setCurrentWord("Strategy");
+            setDimOpacity(0);
+          } else {
+            // Fade out from progress 0.95 to 1.0
+            const fadeProgress = (progress - 0.95) / 0.05;
+            setDimOpacity(fadeProgress);
+          }
+        },
+        onLeave: () => {
+          setShowHero(false);
+        },
+        onEnterBack: () => {
+          setShowHero(true);
         }
+      }
+    });
 
-        // Render function
-        function render() {
-            if (!context || !canvas) return;
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            if (images[animation.frame] && images[animation.frame].complete) {
-                context.drawImage(images[animation.frame], 0, 0, canvas.width, canvas.height);
-            }
-        }
+    tl.to(animation, {
+      frame: frameCount - 1,
+      snap: 'frame',
+      ease: 'none',
+      onUpdate: render
+    });
 
-        // GSAP scroll animation with pinning
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: section,
-                scrub: 0.5,
-                pin: true,
-                start: 'top top',
-                end: '+=500%',
-                onUpdate: (self) => {
-                    const progress = self.progress;
+    // Render first frame when loaded
+    images[0].onload = render;
 
-                    // Determine which word to show based on scroll progress
-                    // 0-30%: "Identity", 30-65%: "Systems", 65-95%: "Strategy", 95-100%: fade out
-                    if (progress < 0.3) {
-                        setCurrentWord("Identity");
-                        setDimOpacity(0);
-                    } else if (progress < 0.65) {
-                        setCurrentWord("Systems");
-                        setDimOpacity(0);
-                    } else if (progress < 0.95) {
-                        setCurrentWord("Strategy");
-                        setDimOpacity(0);
-                    } else {
-                        // Fade out from progress 0.95 to 1.0
-                        const fadeProgress = (progress - 0.95) / 0.05;
-                        setDimOpacity(fadeProgress);
-                    }
-                },
-                onLeave: () => {
-                    setShowHero(false);
-                },
-                onEnterBack: () => {
-                    setShowHero(true);
-                }
-            }
-        });
+    // Cleanup
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
 
-        tl.to(animation, {
-            frame: frameCount - 1,
-            snap: 'frame',
-            ease: 'none',
-            onUpdate: render
-        });
+  // Animate the changing word
+  useEffect(() => {
+    if (wordRef.current) {
+      gsap.fromTo(wordRef.current,
+        { opacity: 0, x: 20 },
+        { opacity: 1, x: 0, duration: 0.6, ease: "power2.out" }
+      );
+    }
+  }, [currentWord]);
 
-        // Render first frame when loaded
-        images[0].onload = render;
+  return (
+    <AnimationSection ref={sectionRef}>
+      <Canvas ref={canvasRef} />
+      <DimOverlay $opacity={dimOpacity} />
+      <HeroOverlay $isVisible={showHero}>
+        <Logo>
+          <img
+            src="rov-logo.webp"
+            alt="ROV Logo"
+          />
+        </Logo>
+        <Heading>
+          <div style={{ fontSize: '3rem', fontWeight: 'bold', lineHeight: '1.2' }}>
+            CREATIVE<br />STUDIO
+          </div>
+        </Heading>
+      </HeroOverlay>
 
-        // Cleanup
-        return () => {
-            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-        };
-    }, []);
-
-    // Animate the changing word
-    useEffect(() => {
-        if (wordRef.current) {
-            gsap.fromTo(wordRef.current,
-                { opacity: 0, x: 20 },
-                { opacity: 1, x: 0, duration: 0.6, ease: "power2.out" }
-            );
-        }
-    }, [currentWord]);
-
-    return (
-        <AnimationSection ref={sectionRef}>
-            <Canvas ref={canvasRef} />
-            <DimOverlay $opacity={dimOpacity} />
-            <HeroOverlay $isVisible={showHero}>
-                <Logo>
-                    <img
-                        src="rov-logo.webp"
-                        alt="ROV Logo"
-                    />
-                </Logo>
-                <Heading>
-                    <div style={{ fontSize: '3rem', fontWeight: 'bold', lineHeight: '1.2' }}>
-                        CREATIVE<br />STUDIO
-                    </div>
-                </Heading>
-            </HeroOverlay>
-
-            {/* Text Animation */}
-            <TextOverlay $isVisible={dimOpacity < 1}>
-                <CreativeText ref={creativeRef}>Creative</CreativeText>
-                <ChangingWord ref={wordRef}>{currentWord}</ChangingWord>
-            </TextOverlay>
-        </AnimationSection>
-    );
+      {/* Text Animation */}
+      <TextOverlay $isVisible={dimOpacity < 1}>
+        <CreativeText ref={creativeRef}>Creative</CreativeText>
+        <ChangingWord ref={wordRef}>{currentWord}</ChangingWord>
+      </TextOverlay>
+    </AnimationSection>
+  );
 };
 
 export default HeroWithAnimation;

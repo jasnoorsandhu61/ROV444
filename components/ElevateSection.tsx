@@ -71,7 +71,9 @@ const Description = styled.p`
   }
 `;
 
-const CTA = styled(motion.button)`
+const CTA = styled(motion.a)`
+  display: inline-block;
+  text-decoration: none;
   padding: 18px 36px;
   border: none;
   border-radius: 50px;
@@ -106,7 +108,7 @@ const ElevateSection: React.FC = () => {
           <Title>Elevate Your<br />Brand Today</Title>
         </motion.div>
       </LeftContent>
-      
+
       <RightContent>
         <motion.div
           initial={{ opacity: 0, x: 50 }}
@@ -118,8 +120,11 @@ const ElevateSection: React.FC = () => {
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
           </Description>
         </motion.div>
-        
+
         <CTA
+          href="https://calendly.com/rangeofviewmusic/30min"
+          target="_blank"
+          rel="noopener noreferrer"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.4 }}

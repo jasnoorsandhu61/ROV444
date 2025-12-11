@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { Github, Instagram, Linkedin } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Footer = () => {
   const [isIndia, setIsIndia] = useState<boolean>(false);
@@ -34,9 +35,6 @@ const Footer = () => {
     <>
       <div
         className="relative grid w-full grid-cols-1 md:grid-cols-12 bg-contain bg-no-repeat bg-center"
-        style={{
-          backgroundImage: "url('/assets/background/footerbg.png')",
-        }}
       >
         {/* Overlay for subtle dark tone */}
         <div className="absolute inset-0 bg-black/30 "></div>
@@ -48,31 +46,32 @@ const Footer = () => {
             <div className="relative z-10 flex flex-col items-center justify-between text-center px-4">
               <p
                 className="uppercase tracking-[4px] text-4xl text-[#f8f2e5] pt-5"
-                style={{ fontFamily: 'Futura, sans-serif' }}
+                style={{ fontFamily: 'Norwige Light, sans-serif' }}
               >
                 ELEVATE YOUR <br /> BRAND TODAY.
               </p>
 
 
-                {/* Replace ring image with video */}
-                <video
-                  src="/video/ring_footer.webm"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="h-[200px] w-auto object-contain"
-                />
+              {/* Replace ring image with video */}
+              <video
+                src="/video/ring_footer.webm"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="h-[200px] w-auto object-contain"
+              />
 
               <h2
                 className="uppercase text-5xl text-[#f8f2e5] mb-6 tracking-widest"
-                style={{ fontFamily: 'Futura, sans-serif' }}
+                style={{ fontFamily: 'sink, sans-serif' }}
               >
                 SERVICES
               </h2>
 
               <ul
-                className="flex flex-col items-center futura gap-2 md:text-2xl text-lg tracking-[2px] text-[#f8f2e5]"
+                className="flex flex-col items-center gap-2 md:text-2xl text-lg tracking-[2px] text-[#f8f2e5]"
+                style={{ fontFamily: 'Norwige Light, sans-serif' }}
               >
                 <li>
                   <a href="/sound" className="hover:text-white transition-colors duration-300">SOUND</a>
@@ -98,7 +97,7 @@ const Footer = () => {
             <div className="relative z-10 flex flex-col items-center">
               <h3
                 className="text-[#d0cdbc] text-5xl tracking-[3px] uppercase mb-5"
-                style={{ fontFamily: 'Futura, sans-serif' }}
+                style={{ fontFamily: 'Norwige Light, sans-serif' }}
               >
                 FOLLOW US
               </h3>
@@ -135,22 +134,27 @@ const Footer = () => {
               </div>
 
               <div className="w-full h-[160px] mt-14">
-                <Image
-                  src="/assets/images/logokalam.png"
-                  alt="Logo"
-                  width={500}
-                  height={100}
-                  className="w-full h-full object-contain"
-                />
+                <Link
+                  href="/"
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  className="w-full h-full block cursor-pointer"
+                >
+                  <Image
+                    src="/assets/images/logokalam.png"
+                    alt="Logo"
+                    width={500}
+                    height={100}
+                    className="w-full h-full object-contain"
+                  />
+                </Link>
               </div>
-              <div className="w-full h-[100px] mt-6">
-                <Image
-                  src="/assets/images/STUDIOS.png"
-                  alt="Studios"
-                  width={500}
-                  height={100}
-                  className="w-full h-full object-contain"
-                />
+              <div className="w-full mt-6 text-center">
+                <h2
+                  className="text-[#f8f2e5] text-7xl md:text-8xl tracking-widest uppercase"
+                  style={{ fontFamily: 'sink, sans-serif' }}
+                >
+                  STUDIOS
+                </h2>
               </div>
             </div>
           </div>
@@ -159,7 +163,8 @@ const Footer = () => {
           <div className="relative py-16 flex flex-col items-end justify-between overflow-hidden col-span-12 md:col-span-3">
             <div
               onClick={handleToggle}
-              className="cursor-pointer text-right text-3xl futura leading-tight text-[#f8f2e5] pr-10 select-none"
+              className="cursor-pointer text-right text-3xl leading-tight text-[#f8f2e5] pr-10 select-none"
+              style={{ fontFamily: 'Norwige Light, sans-serif' }}
             >
               <p className="tracking-wide">LOCAL TIME</p>
               <p className="tracking-wide">
@@ -169,13 +174,12 @@ const Footer = () => {
             </div>
 
             <div className="flex flex-col items-end text-right justify-center flex-grow md:pr-20 pr-5 pl-4 md:pt-0 pt-14">
-              <Image
-                src="/assets/images/ctrl.png"
-                alt="Control Logo"
-                width={300}
-                height={80}
-                className="object-contain h-[80px] w-[300px]"
-              />
+              <h2
+                className="text-[#f8f2e5] text-7xl md:text-8xl tracking-widest uppercase"
+                style={{ fontFamily: 'sink, sans-serif' }}
+              >
+                CTRL A\
+              </h2>
             </div>
           </div>
         </div>
