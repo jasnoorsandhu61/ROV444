@@ -11,6 +11,9 @@ interface TrueFocusProps {
     glowColor?: string;
     animationDuration?: number;
     pauseBetweenAnimations?: number;
+    fontSize?: string;
+    fontFamily?: string;
+    letterSpacing?: string;
 }
 
 interface FocusRect {
@@ -28,6 +31,9 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
     glowColor = "rgba(0, 255, 0, 0.6)",
     animationDuration = 0.5,
     pauseBetweenAnimations = 1,
+    fontSize = "4rem",
+    fontFamily = "'Futura', sans-serif",
+    letterSpacing = "normal",
 }) => {
     const words = sentence.split(" ");
     const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -102,7 +108,8 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
                 {words.map((word, index) => (
                     <span
                         key={index}
-                        className="relative text-[4rem] font-black cursor-pointer"
+                        className="relative font-black cursor-pointer"
+                        style={{ fontSize, fontFamily, letterSpacing }}
                     >
                         {word}
                     </span>
@@ -122,9 +129,11 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
                     <span
                         key={index}
                         ref={(el) => (wordRefs.current[index] = el)}
-                        className="relative text-[4rem] font-black cursor-pointer"
+                        className="relative font-black cursor-pointer"
                         style={{
-                            fontFamily: "'Futura', sans-serif",
+                            fontSize,
+                            fontFamily,
+                            letterSpacing,
                             filter: isActive
                                 ? `blur(0px)`
                                 : `blur(${blurAmount}px)`,
