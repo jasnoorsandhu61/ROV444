@@ -12,9 +12,8 @@ interface ServiceCardProps {
   position: "top-left" | "top-right" | "bottom-left" | "bottom-right";
   isExpanded: boolean;
   expandedCard: string | null;
-  onHover: () => void;
-  onLeave: () => void;
-  onClick: () => void;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
@@ -24,25 +23,26 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   position,
   isExpanded,
   expandedCard,
-  onHover,
-  onLeave,
-  onClick,
+  onMouseEnter,
+  onMouseLeave,
 }) => {
   const isAnyExpanded = expandedCard !== null;
   const isCollapsed = isAnyExpanded && !isExpanded;
 
   return (
     <div
-      className={`relative group transition-all duration-1200 ease-in-out ${isExpanded ? "expanded-card" : isCollapsed ? "collapsed-card" : "normal-card"
+      className={`relative group ${isExpanded ? "expanded-card" : isCollapsed ? "collapsed-card" : "normal-card"
         }`}
-      onMouseEnter={onHover}
-      onMouseLeave={onLeave}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       {/* Glass container */}
       <div
-        className={`relative bg-black/50 backdrop-blur-md border border-white/10 rounded-3xl overflow-hidden transition-all duration-1200 h-full ${isExpanded ? "p-8" : "p-6"
-          } hover:bg-black/40 hover:border-white/20 cursor-pointer`}
-        onClick={onClick}
+        className={`relative bg-black/50 backdrop-blur-md border-2 rounded-3xl overflow-hidden h-full ${isExpanded ? "p-8" : "p-6"
+          } cursor-pointer transition-all duration-300 ${isExpanded
+            ? "border-[#d4af37] shadow-[0_0_30px_rgba(212,175,55,0.3)]"
+            : "border-white/10 hover:border-[#d4af37] hover:shadow-[0_0_20px_rgba(212,175,55,0.2)]"
+          }`}
       >
         {/* Shimmer effect on hover */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300">
@@ -53,89 +53,55 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           /* Expanded content */
           <div className="relative z-10 flex flex-col md:flex-row gap-6 h-full opacity-0 animate-fadeIn">
             {/* Left side - Text content */}
-            <div className="flex-1 flex flex-col justify-between transform transition-all duration-1200 delay-200">
+            <div className="flex-1 flex flex-col justify-between">
               <div>
                 <h3
-                  className="text-white/90 text-3xl md:text-4xl lg:text-5xl font-medium uppercase tracking-wider mb-4 transform transition-all duration-1200"
+                  className="text-white/90 text-3xl md:text-4xl lg:text-5xl font-medium uppercase tracking-wider mb-4"
                   style={{ fontFamily: "Futura, sans-serif" }}
                 >
                   {title}
                 </h3>
-                <p className="text-white/70 text-base md:text-lg mb-4 transform transition-all duration-1200 delay-300">
+                <p className="text-white/70 text-base md:text-lg mb-4">
                   {description}
                 </p>
-                <p className="text-white/50 text-sm md:text-base uppercase tracking-wide transform transition-all duration-1200 delay-350">
+                <p className="text-white/50 text-sm md:text-base uppercase tracking-wide">
                   Projects starting $1000
                 </p>
               </div>
 
-              <button className="bg-white/90 text-black px-6 py-3 rounded-full font-semibold hover:bg-white transition-all duration-300 w-fit transform hover:scale-105">
+              <button className="bg-white/90 text-black px-6 py-3 rounded-full font-semibold hover:bg-white transition-colors duration-300 w-fit">
                 Learn More
               </button>
             </div>
 
             {/* Right side - Image/Icon placeholder */}
-            <div className="w-full md:w-96 h-full min-h-[250px] bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 flex items-center justify-center transform transition-all duration-1200 delay-400">
-              <div className="text-white/30 transform transition-all duration-1200">{icon}</div>
+            <div className="w-full md:w-96 h-full min-h-[250px] bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 flex items-center justify-center">
+              <div className="text-white/30">{icon}</div>
             </div>
           </div>
         ) : (
-          /* Collapsed content */
-          <div className="relative z-10 flex flex-col justify-between h-full transition-all duration-1200">
-            {!isAnyExpanded && (
-              <>
-                {/* Main content with folder and text side by side */}
-                <div className="flex items-center gap-6 mb-6 opacity-0 animate-fadeIn">
-                  {/* 3D Flip Container */}
-                  <div className="flip-container w-48 h-36 flex-shrink-0 group-folder transform transition-all duration-1200">
-                    <div className="flip-card w-full h-full">
-                      {/* Front Side - Folder */}
-                      <div className="flip-card-front">
-                        <div className="relative w-full h-full">
-                          {/* Folder tab */}
-                          <div className="absolute -top-3 left-0 w-32 h-10 bg-[#a9a495] rounded-t-2xl transition-all duration-1200"></div>
-                          {/* Main folder body */}
-                          <div className="relative w-full h-full bg-[#a9a495] rounded-3xl shadow-2xl flex items-center justify-center transition-all duration-1200">
-                            <div className="text-white/90 transition-all duration-1200">{icon}</div>
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-3xl"></div>
-                          </div>
-                        </div>
-                      </div>
+          /* Collapsed content - matching expanded style */
+          <div className="relative z-10 flex flex-col items-center justify-center h-full gap-4">
+            {/* Icon */}
+            <div className="text-white/80">
+              {icon}
+            </div>
 
-                      {/* Back Side - Redirect Icon */}
-                      <div className="flip-card-back">
-                        <div className="relative w-full h-full">
-                          <div className="absolute -top-3 left-0 w-32 h-10 bg-[#a9a495] rounded-t-2xl"></div>
-                          <div className="relative w-full h-full bg-[#a9a495] rounded-3xl shadow-2xl flex items-center justify-center">
-                            <div className="text-white/90">
-                              <ExternalLink className="w-20 h-20" strokeWidth={1.5} />
-                            </div>
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-3xl"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Text to the right of folder */}
-                  <p
-                    className="text-white/60 text-sm uppercase tracking-wider transition-all duration-1200"
-                    style={{ fontFamily: "Futura, sans-serif" }}
-                  >
-                    Projects starting from
-                  </p>
-                </div>
-              </>
-            )}
-
-            {/* Service title - always visible */}
+            {/* Service title */}
             <h3
-              className={`text-white/90 font-medium uppercase tracking-wider transition-all duration-1200 ${isCollapsed ? "text-center text-lg md:text-xl" : "text-center text-lg md:text-2xl"
-                }`}
+              className="text-white/90 font-medium text-center uppercase tracking-wider text-base md:text-lg"
               style={{ fontFamily: "Futura, sans-serif" }}
             >
               {title}
             </h3>
+
+            {/* Pricing text */}
+            <p
+              className="text-white/50 text-xs md:text-sm uppercase tracking-wide"
+              style={{ fontFamily: "Futura, sans-serif" }}
+            >
+              Projects starting from
+            </p>
           </div>
         )}
       </div>
@@ -220,23 +186,12 @@ export default function Services() {
   const router = useRouter();
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
 
-  const handleCardClick = (id: string) => {
-    setTimeout(() => {
-      switch (id) {
-        case "web":
-          router.push("/web");
-          break;
-        case "video":
-          router.push("/vision");
-          break;
-        case "sound":
-          router.push("/sound");
-          break;
-        case "ai":
-          router.push("/ctrla");
-          break;
-      }
-    }, 400);
+  const handleCardHover = (id: string) => {
+    setExpandedCard(id);
+  };
+
+  const handleMouseLeave = () => {
+    setExpandedCard(null);
   };
 
   const services = [
@@ -327,13 +282,15 @@ export default function Services() {
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(2, 1fr);
             gap: 1.5rem;
-            height: 650px;
-            max-height: 80vh;
+            height: 800px;
+            max-height: 85vh;
           }
 
           .services-grid.has-expanded {
             grid-template-columns: 2fr 1fr;
             grid-template-rows: repeat(3, 1fr);
+            height: 800px;
+            max-height: 85vh;
           }
 
           .expanded-card {
@@ -385,9 +342,8 @@ export default function Services() {
               position={service.position}
               isExpanded={expandedCard === service.id}
               expandedCard={expandedCard}
-              onHover={() => setExpandedCard(service.id)}
-              onLeave={() => setExpandedCard(null)}
-              onClick={() => handleCardClick(service.id)}
+              onMouseEnter={() => handleCardHover(service.id)}
+              onMouseLeave={handleMouseLeave}
             />
           ))}
         </div>

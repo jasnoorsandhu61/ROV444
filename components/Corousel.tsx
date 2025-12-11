@@ -134,7 +134,7 @@ const Carousel: React.FC = () => {
 
     const itemWidth = 300; // Width of each item
     const gap = 20; // Gap between items
-    const totalWidth = (itemWidth + gap) * items.length; // Total width including gaps
+    const totalWidth = (itemWidth + gap) * items.length; // Total width of one set
 
     let animationFrameId: number;
 
@@ -144,10 +144,10 @@ const Carousel: React.FC = () => {
       // Update the translateX value
       currentTranslateX.current -= isHovered ? 0.5 : 1; // Slow down animation on hover
 
-      // Reset to the beginning of the second set when reaching the end of the second set
-      // This creates a seamless infinite loop
-      if (currentTranslateX.current <= -totalWidth * 2) {
-        currentTranslateX.current = -totalWidth;
+      // Reset to create seamless infinite loop
+      // When we've scrolled past one complete set, reset to the beginning
+      if (Math.abs(currentTranslateX.current) >= totalWidth + 300) {
+        currentTranslateX.current += totalWidth;
       }
 
       // Apply the translateX value to the carousel

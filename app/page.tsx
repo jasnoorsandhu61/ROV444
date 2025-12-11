@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
 import Gallery from "@/components/Gallery";
 import DigiMag from "@/components/DigiMag";
+import TeamSection from "@/components/TeamSection";
 import Carousel from "@/components/Corousel";
 import Card from "@/components/Card";
 import DesignBreak from "@/components/DesignBreak";
@@ -119,6 +120,8 @@ export default function Home() {
         <ElevateSection />
 
         <DigiMag />
+
+        <TeamSection />
 
         {/* <Card /> */}
 
