@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { User, Video, Headphones, Cpu, ExternalLink } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface ServiceCardProps {
   id: string;
@@ -14,6 +15,7 @@ interface ServiceCardProps {
   expandedCard: string | null;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
+  link?: string;
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
@@ -25,6 +27,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   expandedCard,
   onMouseEnter,
   onMouseLeave,
+  link = "#",
 }) => {
   const isAnyExpanded = expandedCard !== null;
   const isCollapsed = isAnyExpanded && !isExpanded;
@@ -69,9 +72,11 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                 </p>
               </div>
 
-              <button className="bg-white/90 text-black px-6 py-3 rounded-full font-semibold hover:bg-white transition-colors duration-300 w-fit">
-                Learn More
-              </button>
+              <Link href={link}>
+                <button className="bg-white/90 text-black px-6 py-3 rounded-full font-semibold hover:bg-white transition-colors duration-300 w-fit">
+                  Learn More
+                </button>
+              </Link>
             </div>
 
             {/* Right side - Image/Icon placeholder */}
@@ -201,6 +206,7 @@ export default function Services() {
       icon: <User className="w-16 h-16 text-white/80" />,
       description: "Turning clicks into connections with seamless and high impact designs.",
       position: "top-left" as const,
+      link: "/services/web-development",
     },
     {
       id: "sound",
@@ -208,6 +214,7 @@ export default function Services() {
       icon: <Headphones className="w-16 h-16 text-white/80" />,
       description: "Audio production & mixing that brings your content to life with crystal-clear quality.",
       position: "top-right" as const,
+      link: "/services/sound-engineering",
     },
     {
       id: "video",
@@ -215,6 +222,7 @@ export default function Services() {
       icon: <Video className="w-16 h-16 text-white/80" />,
       description: "Cinematic content & aerial media that captures attention and delivers your message.",
       position: "bottom-left" as const,
+      link: "/services/video-production",
     },
     {
       id: "ai",
@@ -222,6 +230,7 @@ export default function Services() {
       icon: <Cpu className="w-16 h-16 text-white/80" />,
       description: "Custom automation solutions powered by AI to streamline your business processes.",
       position: "bottom-right" as const,
+      link: "#",
     },
   ];
 
@@ -344,6 +353,7 @@ export default function Services() {
               expandedCard={expandedCard}
               onMouseEnter={() => handleCardHover(service.id)}
               onMouseLeave={handleMouseLeave}
+              link={service.link}
             />
           ))}
         </div>

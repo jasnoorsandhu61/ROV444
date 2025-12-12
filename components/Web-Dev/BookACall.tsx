@@ -1,11 +1,9 @@
 "use client";
 import { motion, Variants } from "framer-motion";
 import { Earth, MoveUpRight } from "lucide-react";
-import { useState } from "react";
-import BookingModal from "./BookingModal";
+
 
 const BookACall = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const text: string[] = ["Let’s make it", "happen"];
 
   // Parent container type safe
@@ -76,22 +74,28 @@ const BookACall = () => {
       </motion.h2>
 
       <div className="flex justify-center">
-        <button style={{ fontFamily: "futura" }} onMouseOver={() => setIsModalOpen(true)} className="relative overflow-hidden bg-[#393632] flex items-center justify-center cursor-pointer text-white rounded-full py-8 px-12 text-3xl font-semibold tracking-widest group">
-          <span className="absolute inset-0 bg-[#bdbdb0]/30 origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-700 ease-in-out"></span>
-          <span className="relative overflow-hidden flex items-center leading-none h-[1.2em]">
-            <span className="block group-hover:-translate-y-full transition-transform duration-700 ease-in-out">
-              Book a call
+        <a
+          href="https://calendly.com/rangeofviewstudios"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <button style={{ fontFamily: "futura" }} className="relative overflow-hidden bg-[#393632] flex items-center justify-center cursor-pointer text-white rounded-full py-8 px-12 text-3xl font-semibold tracking-widest group">
+            <span className="absolute inset-0 bg-[#bdbdb0]/30 origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-700 ease-in-out"></span>
+            <span className="relative overflow-hidden flex items-center leading-none h-[1.2em]">
+              <span className="block group-hover:-translate-y-full transition-transform duration-700 ease-in-out">
+                Book a call
+              </span>
+              <span className="absolute left-0 top-full block group-hover:top-0 transition-all duration-700 ease-in-out">
+                Book a call
+              </span>
             </span>
-            <span className="absolute left-0 top-full block group-hover:top-0 transition-all duration-700 ease-in-out">
-              Book a call
-            </span>
-          </span>
 
 
-          <span className="relative ml-2">
-            <MoveUpRight size={25} />
-          </span>
-        </button>
+            <span className="relative ml-2">
+              <MoveUpRight size={25} />
+            </span>
+          </button>
+        </a>
       </div>
 
 
@@ -118,13 +122,7 @@ const BookACall = () => {
           </div>
         </div>
       </div>
-
-      <BookingModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
     </section>
   );
 };
-
 export default BookACall;

@@ -1,11 +1,8 @@
 "use client";
 import { motion, Variants } from "framer-motion";
 import { Earth, MoveUpRight } from "lucide-react";
-import { useState } from "react";
-import BookingModal from "../Web-Dev/BookingModal";
 
 const BookACall = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const text: string[] = ["Ready to hear your song", "the way it's supposed to", "sound?"];
 
   const container: Variants = {
@@ -95,20 +92,26 @@ const BookACall = () => {
       </motion.p>
 
       <div className="flex justify-center mt-10">
-        <button style={{ fontFamily: "futura" }} onMouseOver={() => setIsModalOpen(true)} className="relative overflow-hidden bg-[#393632] flex items-center justify-center cursor-pointer text-white rounded-full py-8 px-12 text-3xl font-semibold tracking-widest group">
-          <span className="absolute inset-0 bg-[#bdbdb0]/30 origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-700 ease-in-out"></span>
-          <span className="relative overflow-hidden flex items-center leading-none h-[1.2em]">
-            <span className="block group-hover:-translate-y-full transition-transform duration-700 ease-in-out">
-              Book a call
+        <a
+          href="https://calendly.com/rangeofviewstudios"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <button style={{ fontFamily: "futura" }} className="relative overflow-hidden bg-[#393632] flex items-center justify-center cursor-pointer text-white rounded-full py-8 px-12 text-3xl font-semibold tracking-widest group">
+            <span className="absolute inset-0 bg-[#bdbdb0]/30 origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-700 ease-in-out"></span>
+            <span className="relative overflow-hidden flex items-center leading-none h-[1.2em]">
+              <span className="block group-hover:-translate-y-full transition-transform duration-700 ease-in-out">
+                Book a call
+              </span>
+              <span className="absolute left-0 top-full block group-hover:top-0 transition-all duration-700 ease-in-out">
+                Book a call
+              </span>
             </span>
-            <span className="absolute left-0 top-full block group-hover:top-0 transition-all duration-700 ease-in-out">
-              Book a call
+            <span className="relative ml-2">
+              <MoveUpRight size={25} />
             </span>
-          </span>
-          <span className="relative ml-2">
-            <MoveUpRight size={25} />
-          </span>
-        </button>
+          </button>
+        </a>
       </div>
 
       <div className="mt-12 flex flex-col md:flex-row justify-between items-center text-[#2c2420] font-semibold gap-4">
@@ -139,11 +142,6 @@ const BookACall = () => {
         </div>
 
       </div>
-
-      <BookingModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
     </section>
   );
 };

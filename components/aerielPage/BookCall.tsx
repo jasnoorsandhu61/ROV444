@@ -84,30 +84,35 @@ const BookCall = () => {
       </motion.p>
 
       <div className="flex justify-center mt-10">
-        <button
-          // onClick={() => setIsModalOpen(true)}
-          className="
-      relative overflow-hidden bg-[#393632] futura flex items-center justify-center 
-      cursor-pointer text-white md:py-12 py-6 md:px-16 px-10 text-3xl font-semibold tracking-wide group 
-      transition-all duration-700 ease-in-out 
-      rounded-[40px_40px_120px_120px] hover:rounded-[20px]
-    "
+        <a
+          href="https://calendly.com/rangeofviewstudios"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <span
+          <button
             className="
-        absolute top-3 right-4
-        transition-transform duration-500 ease-in-out
-        group-hover:translate-x-2 group-hover:-translate-y-1
+        relative overflow-hidden bg-[#393632] futura flex items-center justify-center 
+        cursor-pointer text-white md:py-12 py-6 md:px-16 px-10 text-3xl font-semibold tracking-wide group 
+        transition-all duration-700 ease-in-out 
+        rounded-[40px_40px_120px_120px] hover:rounded-[20px]
       "
           >
-            <ArrowUpRight size={28} strokeWidth={2.5} />
-          </span>
+            <span
+              className="
+          absolute top-3 right-4
+          transition-transform duration-500 ease-in-out
+          group-hover:translate-x-2 group-hover:-translate-y-1
+        "
+            >
+              <ArrowUpRight size={28} strokeWidth={2.5} />
+            </span>
 
-          {/* Button Text */}
-          <span className="relative overflow-hidden flex items-center leading-none h-[1.2em]">
-            Book a call
-          </span>
-        </button>
+            {/* Button Text */}
+            <span className="relative overflow-hidden flex items-center leading-none h-[1.2em]">
+              Book a call
+            </span>
+          </button>
+        </a>
       </div>
 
       <div className="mt-12 flex flex-col md:flex-row justify-between items-center text-[#2c2420] font-semibold gap-4">
