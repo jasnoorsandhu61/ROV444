@@ -17,6 +17,7 @@ interface TeamMember {
     tools?: string[];
     keyContributions?: string[];
     secretQuote?: string;
+    shadowColor?: string;
 }
 
 const teamMembers: TeamMember[] = [
@@ -25,33 +26,118 @@ const teamMembers: TeamMember[] = [
         image: "/teammembers/basutm.JPG",
         category: "Creative",
         name: "Basu",
-        role: "FOUNDER&CREATIVEDIRECTOR",
-        skills: ["Art Direction", "Web Development", "3D Design"],
-        location: "Canada",
+        role: "FOUNDER & CREATIVE DIRECTOR",
+        skills: ["Creative Direction", "Brand Strategy", "Web Development", "Design Systems", "Client Relations"],
+        location: "Atlanta",
         specialties: "Leads creative direction across all client projects and internal initiatives while overseeing company operations. Contributes hands-on to design, development, and client communications, ensuring R.O.V.'s vision stays consistent from pitch to delivery.",
-        tools: ["Figma", "Adobe Creative Suite", "Next.js", "React", "TypeScript", "HTML/CSS", "Notion"],
+        tools: ["Figma", "Adobe Creative Suite (Illustrator, Photoshop, XD)", "Next.js, React, TypeScript, HTML/CSS", "Notion"],
         keyContributions: [
             "Directed creative vision and strategy for all major client engagements.",
             "Built and coded flagship web experiences from concept to deployment.",
             "Established R.O.V.'s operational framework and client communication standards."
         ],
-        secretQuote: "Coffee first, code second, creativity always. ☕✨"
+        secretQuote: "Coffee first, code second, creativity always. ☕✨",
+        shadowColor: "101, 67, 33"
     },
-    { id: 2, image: "/teammembers/jahnavitm.jpg", category: "Creative", name: "Jahnavi", role: "CREATIVE DESIGNER", skills: ["Art Direction", "Web Design (UX/UI)", "Brand Identity"], location: "India", secretQuote: "Design is thinking made visual. 🎨💭" },
-    { id: 3, image: "/teammembers/vaishtm.jpg", category: "Creative", name: "Vaish", role: "CREATIVE STRATEGIST", skills: ["Brand Strategy", "Content Creation", "Visual Design"], location: "India", secretQuote: "Strategy without creativity is just planning. 🚀" },
-    { id: 4, image: "/teammembers/tanvitm.jpg", category: "Creative", name: "Tanvi", role: "CREATIVE DESIGNER", skills: ["Graphic Design", "Illustration", "Typography"], location: "India", secretQuote: "Every pixel has a purpose. ✏️" },
-    { id: 5, image: "/teammembers/dakshatm.jpg", category: "Tech", name: "Daksha", role: "TECHNICAL LEAD", skills: ["Full Stack Development", "System Architecture", "DevOps"], location: "India", secretQuote: "Code is poetry in motion. 💻🎵" },
-    { id: 6, image: "/teammembers/jasnoortm.jpg", category: "Tech", name: "Jasnoor", role: "SOFTWARE ENGINEER", skills: ["Web Development", "Mobile Apps", "Cloud Solutions"], location: "Canada", secretQuote: "Debugging is like being a detective in a crime movie where you're also the murderer. 🕵️" },
+    {
+        id: 2,
+        image: "/teammembers/jahnavitm.jpg",
+        category: "Creative",
+        name: "Jahnavi",
+        role: "HEAD OF DESIGN",
+        skills: ["UI/UX Design", "Brand Identity", "Design Systems", "Illustration", "Visual Design", "Prototyping"],
+        location: "India",
+        secretQuote: "Design is thinking made visual. 🎨💭",
+        specialties: "Masters every design discipline—from UI/UX and visual systems to custom illustration and brand identity. Creates cohesive, polished design solutions across all touchpoints, ensuring R.O.V.'s work is as functional as it is beautiful.",
+        tools: ["Figma", "Adobe Illustrator, Photoshop, Procreate", "FigJam/Miro"],
+        keyContributions: [
+            "Led visual design and UI/UX for flagship client projects and R.O.V.'s own branding.",
+            "Created custom illustrations and brand identity elements that define studio aesthetic.",
+            "Built reusable design systems and component libraries for consistent execution."
+        ],
+        shadowColor: "150, 100, 120"
+    },
+    {
+        id: 3,
+        image: "/teammembers/vaishtm.jpg",
+        category: "Creative",
+        name: "Vaishnavi",
+        role: "CREATIVE DIRECTOR & VIDEO STRATEGIST",
+        skills: ["Video Creative Direction", "Visual Storytelling", "Campaign Strategy", "Motion Design"],
+        location: "Atlanta",
+        secretQuote: "I shape how brands move, talk, and feel across every frame.",
+        specialties: "I help brands tell stories that stick—through motion, narrative structure, and campaign-level thinking. Whether it's directing video concepts or modeling creative strategies, I make sure every decision connects back to what the brand needs to say and how people should feel it.",
+        tools: ["Adobe Premiere Pro, After Effects", "Figma", "Social Planning Tools"],
+        keyContributions: [
+            "Directed video strategies for 8+ campaigns, shaped foundational creative concepts.",
+            "Helped define how R.O.V. thinks about motion and narrative across all client work."
+        ],
+        shadowColor: "180, 120, 90"
+    },
+    {
+        id: 4,
+        image: "/teammembers/tanvitm.jpg",
+        category: "Creative",
+        name: "Tanvi",
+        role: "DESIGN & SOCIAL MEDIA STRATEGIST",
+        skills: ["Social Media Design", "UI/UX", "Content Strategy", "Creative Ideation", "Campaign Visuals"],
+        location: "India",
+        secretQuote: "Every pixel has a purpose. ✏️",
+        specialties: "Drives social media design and visual content strategy while playing a key role in ideating and brainstorming direction for new projects. Brings fresh UI/UX perspectives and ensures digital touchpoints feel modern and engaging.",
+        tools: ["Figma, Adobe XD, Canva, Photoshop", "Meta Suite", "Content Planning Tools"],
+        keyContributions: [
+            "Created social media graphics, carousels, and campaign assets for R.O.V. and clients.",
+            "Contributed to UI/UX ideation and design direction for new project launches.",
+            "Helped brainstorm creative concepts that shaped fresh project directions."
+        ],
+        shadowColor: "140, 110, 140"
+    },
+    {
+        id: 5,
+        image: "/teammembers/dakshatm.jpg",
+        category: "Tech",
+        name: "Daksha",
+        role: "HEAD OF DEVELOPMENT",
+        skills: ["Full-Stack Development", "Technical Architecture", "Complex Problem Solving", "Performance Optimization", "Code Standards"],
+        location: "India",
+        secretQuote: "Code is poetry in motion. 💻🎵",
+        specialties: "R.O.V.'s go-to technical lead for complex coding challenges and scalable solutions. Solves the toughest tech problems, architects robust systems, and ensures every build is performant, maintainable, and production-ready.",
+        tools: ["Next.js, React, TypeScript, JavaScript", "Node.js, API Integration", "Git/GitHub, Vercel"],
+        keyContributions: [
+            "Led development and technical architecture on high-complexity client builds.",
+            "Solved critical technical challenges that unlocked new possibilities for projects.",
+            "Built scalable, clean codebases while establishing development best practices for the team."
+        ],
+        shadowColor: "90, 120, 150"
+    },
+    {
+        id: 6,
+        image: "/teammembers/jasnoortm.jpg",
+        category: "Tech",
+        name: "Jasnoor",
+        role: "DEVELOPER & FRONTEND SPECIALIST",
+        skills: ["Frontend Development", "Creative Problem Solving", "UI Implementation", "Interactive Features", "Component Development"],
+        location: "Atlanta",
+        secretQuote: "Debugging is like being a detective in a crime movie where you're also the murderer. 🕵️",
+        specialties: "Assists with coding across projects while solving complex technical problems and creating innovative frontend solutions. Brings creative thinking to development, finding elegant ways to implement ambitious design ideas.",
+        tools: ["React, Next.js, JavaScript/TypeScript", "HTML/CSS, Tailwind", "Git/GitHub"],
+        keyContributions: [
+            "Developed key features and interactive elements across client sites and internal tools.",
+            "Solved complex frontend challenges with creative, performant solutions.",
+            "Contributed technical ideas that elevated user experience and visual execution."
+        ],
+        shadowColor: "120, 140, 100"
+    },
     {
         id: 7,
         image: "/teammembers/basutm.JPG",
         category: "Tech",
         name: "Basu",
-        role: "FOUNDER&CREATIVEDIRECTOR",
-        skills: ["Art Direction", "Web Development", "3D Design"],
-        location: "Canada",
+        role: "FOUNDER & CREATIVE DIRECTOR",
+        skills: ["Creative Direction", "Brand Strategy", "Web Development", "Design Systems", "Client Relations"],
+        location: "Atlanta",
         specialties: "Leads creative direction across all client projects and internal initiatives while overseeing company operations. Contributes hands-on to design, development, and client communications, ensuring R.O.V.'s vision stays consistent from pitch to delivery.",
-        tools: ["Figma", "Adobe Creative Suite", "Next.js", "React", "TypeScript", "HTML/CSS", "Notion"],
+        tools: ["Figma", "Adobe Creative Suite (Illustrator, Photoshop, XD)", "Next.js, React, TypeScript, HTML/CSS", "Notion"],
         keyContributions: [
             "Directed creative vision and strategy for all major client engagements.",
             "Built and coded flagship web experiences from concept to deployment.",
@@ -59,9 +145,57 @@ const teamMembers: TeamMember[] = [
         ],
         secretQuote: "Coffee first, code second, creativity always. ☕✨"
     },
-    { id: 8, image: "/teammembers/suchettm.JPG", category: "Tech", name: "Suchet", role: "BACKEND ENGINEER", skills: ["API Development", "Database Design", "Server Management"], location: "India", secretQuote: "Real Job: Getting whatever the fuck needs to be done, done" },
-    { id: 9, image: "/teammembers/dakshatm.jpg", category: "Systems", name: "Daksha", role: "SYSTEMS ARCHITECT", skills: ["Infrastructure Design", "Security", "Automation"], location: "India", secretQuote: "Building systems that don't break is my superpower. 🦸" },
-    { id: 10, image: "/teammembers/suchettm.JPG", category: "Systems", name: "Suchet", role: "SYSTEMS ENGINEER", skills: ["Network Design", "Cloud Infrastructure", "Monitoring"], location: "India", secretQuote: "Real Job: Getting whatever the fuck needs to be done, done" },
+    {
+        id: 8,
+        image: "/teammembers/suchettm.JPG",
+        category: "Tech",
+        name: "Suchet",
+        role: "CO-FOUNDER & SYSTEMS ARCHITECT",
+        skills: ["Operations Strategy", "AI Systems Development", "Financial Management", "Sales & Client Relations", "Process Automation"],
+        location: "Atlanta",
+        secretQuote: "Real Job: Getting whatever the fuck needs to be done, done",
+        specialties: "Joined as co-founder to build the operational backbone of R.O.V. Manages finances, sales pipelines, and client communications while developing AI-driven systems that automate workflows and scale the studio's capabilities.",
+        tools: ["n8n, Make/Zapier", "ChatGPT & AI Tools", "CRM & Invoicing Systems", "Financial Planning Tools"],
+        keyContributions: [
+            "Built end-to-end AI systems for research, documentation, and workflow automation.",
+            "Oversees financial strategy, sales outreach, and client relationship management.",
+            "Defines systematic direction and operational processes that keep R.O.V. running efficiently."
+        ]
+    },
+    {
+        id: 9,
+        image: "/teammembers/dakshatm.jpg",
+        category: "Systems",
+        name: "Daksha",
+        role: "HEAD OF DEVELOPMENT",
+        skills: ["Full-Stack Development", "Technical Architecture", "Complex Problem Solving", "Performance Optimization", "Code Standards"],
+        location: "India",
+        secretQuote: "Code is poetry in motion. 💻🎵",
+        specialties: "R.O.V.'s go-to technical lead for complex coding challenges and scalable solutions. Solves the toughest tech problems, architects robust systems, and ensures every build is performant, maintainable, and production-ready.",
+        tools: ["Next.js, React, TypeScript, JavaScript", "Node.js, API Integration", "Git/GitHub, Vercel"],
+        keyContributions: [
+            "Led development and technical architecture on high-complexity client builds.",
+            "Solved critical technical challenges that unlocked new possibilities for projects.",
+            "Built scalable, clean codebases while establishing development best practices for the team."
+        ]
+    },
+    {
+        id: 10,
+        image: "/teammembers/suchettm.JPG",
+        category: "Systems",
+        name: "Suchet",
+        role: "CO-FOUNDER & SYSTEMS ARCHITECT",
+        skills: ["Operations Strategy", "AI Systems Development", "Financial Management", "Sales & Client Relations", "Process Automation"],
+        location: "Atlanta",
+        secretQuote: "Real Job: Getting whatever the fuck needs to be done, done",
+        specialties: "Joined as co-founder to build the operational backbone of R.O.V. Manages finances, sales pipelines, and client communications while developing AI-driven systems that automate workflows and scale the studio's capabilities.",
+        tools: ["n8n, Make/Zapier", "ChatGPT & AI Tools", "CRM & Invoicing Systems", "Financial Planning Tools"],
+        keyContributions: [
+            "Built end-to-end AI systems for research, documentation, and workflow automation.",
+            "Oversees financial strategy, sales outreach, and client relationship management.",
+            "Defines systematic direction and operational processes that keep R.O.V. running efficiently."
+        ]
+    },
 ];
 
 const categories: Category[] = ["Creative", "Tech", "Systems"];
@@ -71,7 +205,7 @@ const TeamSection: React.FC = () => {
     const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
     const [showQuote, setShowQuote] = useState(false);
 
-    const ImageCard = useCallback(({ src, alt, stationary = false, onClick, name }: { src: string; alt: string, stationary?: boolean, onClick?: () => void, name?: string }) => {
+    const ImageCard = useCallback(({ src, alt, stationary = false, onClick, name, role }: { src: string; alt: string, stationary?: boolean, onClick?: () => void, name?: string, role?: string }) => {
         const [isHovered, setIsHovered] = useState(false);
 
         return (
@@ -85,7 +219,7 @@ const TeamSection: React.FC = () => {
                     overflow: 'hidden',
                     flexShrink: 0,
                     position: 'relative',
-                    cursor: stationary ? 'pointer' : 'default'
+                    cursor: 'pointer'
                 }}
                 initial={stationary ? { opacity: 0, scale: 0.9 } : undefined}
                 animate={stationary ? { opacity: 1, scale: 1 } : undefined}
@@ -119,21 +253,37 @@ const TeamSection: React.FC = () => {
                             background: 'linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%)',
                             backdropFilter: 'blur(4px)',
                             display: 'flex',
+                            flexDirection: 'column',
                             alignItems: 'center',
                             justifyContent: 'center',
+                            gap: '10px',
                             zIndex: 10
                         }}
                     >
                         <h3 style={{
                             fontFamily: 'sink, sans-serif',
-                            fontSize: 'clamp(2rem, 4vw, 3rem)',
+                            fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
                             fontWeight: '900',
                             color: 'white',
                             letterSpacing: '0.05em',
-                            textTransform: 'uppercase'
+                            textTransform: 'uppercase',
+                            margin: 0
                         }}>
                             {name}
                         </h3>
+                        {role && (
+                            <p style={{
+                                fontFamily: 'Norwige, sans-serif',
+                                fontSize: 'clamp(0.8rem, 1.5vw, 1rem)',
+                                fontWeight: '400',
+                                color: 'rgba(255, 255, 255, 0.9)',
+                                letterSpacing: '0.05em',
+                                textTransform: 'uppercase',
+                                margin: 0
+                            }}>
+                                {role}
+                            </p>
+                        )}
                     </motion.div>
                 )}
             </motion.div>
@@ -208,15 +358,20 @@ const TeamSection: React.FC = () => {
                                         <div className="text-block">
                                             <h2>MEET</h2>
                                         </div>
-                                        <ImageCard src={teamMembers[0].image} alt="Team 1" name={teamMembers[0].name} />
-                                        <ImageCard src={teamMembers[1].image} alt="Team 2" name={teamMembers[1].name} />
+                                        <ImageCard src={teamMembers[0].image} alt="Team 1" name={teamMembers[0].name} role={teamMembers[0].role} onClick={() => setSelectedMember(teamMembers[0])} />
+                                        <ImageCard src={teamMembers[1].image} alt="Team 2" name={teamMembers[1].name} role={teamMembers[1].role} onClick={() => setSelectedMember(teamMembers[1])} />
                                         <button
                                             className="category-button"
                                             onClick={() => setActiveCategory("Creative")}
                                         >
                                             CREATIVE
                                         </button>
-                                        <ImageCard src={teamMembers[2].image} alt="Team 3" name={teamMembers[2].name} />
+                                        <ImageCard src={teamMembers[2].image} alt="Team 3" name={teamMembers[2].name} role={teamMembers[2].role} onClick={() => setSelectedMember(teamMembers[2])} />
+                                        <ImageCard src={teamMembers[3].image} alt="Team 4" name={teamMembers[3].name} role={teamMembers[3].role} onClick={() => setSelectedMember(teamMembers[3])} />
+                                        <div className="text-block">
+                                            <h2>THE</h2>
+                                        </div>
+                                        <ImageCard src={teamMembers[4].image} alt="Team 5" name={teamMembers[4].name} role={teamMembers[4].role} onClick={() => setSelectedMember(teamMembers[4])} />
                                     </React.Fragment>
                                 ))}
                             </div>
@@ -233,12 +388,12 @@ const TeamSection: React.FC = () => {
                                         >
                                             TECH
                                         </button>
-                                        <ImageCard src={teamMembers[4].image} alt="Team 5" name={teamMembers[4].name} />
+                                        <ImageCard src={teamMembers[4].image} alt="Team 5" name={teamMembers[4].name} role={teamMembers[4].role} onClick={() => setSelectedMember(teamMembers[4])} />
                                         <div className="text-block">
                                             <h2>THE</h2>
                                         </div>
-                                        <ImageCard src={teamMembers[5].image} alt="Team 6" name={teamMembers[5].name} />
-                                        <ImageCard src={teamMembers[6].image} alt="Team 7" name={teamMembers[6].name} />
+                                        <ImageCard src={teamMembers[5].image} alt="Team 6" name={teamMembers[5].name} role={teamMembers[5].role} onClick={() => setSelectedMember(teamMembers[5])} />
+                                        <ImageCard src={teamMembers[6].image} alt="Team 7" name={teamMembers[6].name} role={teamMembers[6].role} onClick={() => setSelectedMember(teamMembers[6])} />
                                     </React.Fragment>
                                 ))}
                             </div>
@@ -249,12 +404,12 @@ const TeamSection: React.FC = () => {
                             <div className="marquee-track scroll-left">
                                 {[...Array(4)].map((_, i) => (
                                     <React.Fragment key={`r3-${i}`}>
-                                        <ImageCard src={teamMembers[8].image} alt="Team 9" name={teamMembers[8].name} />
-                                        <ImageCard src={teamMembers[9].image} alt="Team 10" name={teamMembers[9].name} />
+                                        <ImageCard src={teamMembers[8].image} alt="Team 9" name={teamMembers[8].name} role={teamMembers[8].role} onClick={() => setSelectedMember(teamMembers[8])} />
+                                        <ImageCard src={teamMembers[9].image} alt="Team 10" name={teamMembers[9].name} role={teamMembers[9].role} onClick={() => setSelectedMember(teamMembers[9])} />
                                         <div className="text-block">
                                             <h2>TEAM</h2>
                                         </div>
-                                        <ImageCard src={teamMembers[8].image} alt="Team 9" name={teamMembers[8].name} />
+                                        <ImageCard src={teamMembers[8].image} alt="Team 9" name={teamMembers[8].name} role={teamMembers[8].role} onClick={() => setSelectedMember(teamMembers[8])} />
                                         <button
                                             className="category-button"
                                             onClick={() => setActiveCategory("Systems")}
@@ -369,18 +524,18 @@ const TeamSection: React.FC = () => {
                                     top: '80px',
                                     left: '0',
                                     right: '0',
-                                    zIndex: 3,
+                                    zIndex: 1,
                                     fontFamily: 'sink, sans-serif',
-                                    fontSize: 'clamp(4rem, 12vw, 10rem)',
+                                    fontSize: 'clamp(2rem, 6vw, 4.5rem)',
                                     fontWeight: '900',
                                     color: 'black',
-                                    letterSpacing: '-0.03em',
+                                    letterSpacing: '0.05em',
                                     lineHeight: '0.9',
-                                    textAlign: 'left',
+                                    textAlign: 'center',
                                     paddingLeft: '0',
                                 }}
                             >
-                                {selectedMember.role.replace(/\s+/g, '')}
+                                {selectedMember.role}
                             </motion.div>
 
                             {/* Center Image - Overlapped by Title */}
@@ -388,15 +543,15 @@ const TeamSection: React.FC = () => {
                                 layoutId={`card-${selectedMember.image}`}
                                 style={{
                                     position: 'absolute',
-                                    top: '50%',
-                                    left: '50%',
-                                    transform: 'translate(-50%, -50%)',
-                                    width: '350px',
-                                    height: '450px',
-                                    borderRadius: '0px',
+                                    top: '180px',
+                                    right: '60px',
+                                    width: '400px',
+                                    height: '400px',
+                                    borderRadius: '20px',
                                     overflow: 'hidden',
-                                    zIndex: 2,
-                                    boxShadow: '0 10px 40px rgba(0,0,0,0.1)',
+                                    zIndex: 4,
+                                    border: `3px solid rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.6)`,
+                                    boxShadow: `0 15px 50px rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.5), 0 5px 20px rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.4), 0 0 0 1px rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.2)`,
                                 }}
                             >
                                 <img
@@ -451,7 +606,7 @@ const TeamSection: React.FC = () => {
                                     right: '0',
                                     top: '20px',
                                     zIndex: 3,
-                                    fontFamily: 'sink, sans-serif',
+                                    fontFamily: 'Norwige, sans-serif',
                                     fontSize: 'clamp(0.7rem, 1.2vw, 0.9rem)',
                                     color: 'black',
                                     fontWeight: '600',
@@ -470,7 +625,7 @@ const TeamSection: React.FC = () => {
                                     transition={{ delay: 0.3 }}
                                     style={{
                                         position: 'absolute',
-                                        bottom: '0',
+                                        bottom: '80px',
                                         left: '0',
                                         right: '0',
                                         zIndex: 3,
@@ -489,7 +644,7 @@ const TeamSection: React.FC = () => {
                                                 fontWeight: '900',
                                                 color: 'black',
                                                 marginBottom: '12px',
-                                                letterSpacing: '0.05em',
+                                                letterSpacing: '0.1em',
                                             }}>
                                                 SPECIALTIES
                                             </h3>
@@ -514,7 +669,7 @@ const TeamSection: React.FC = () => {
                                                 fontWeight: '900',
                                                 color: 'black',
                                                 marginBottom: '12px',
-                                                letterSpacing: '0.05em',
+                                                letterSpacing: '0.1em',
                                             }}>
                                                 TOOLS
                                             </h3>
@@ -548,7 +703,7 @@ const TeamSection: React.FC = () => {
                                                 fontWeight: '900',
                                                 color: 'black',
                                                 marginBottom: '12px',
-                                                letterSpacing: '0.05em',
+                                                letterSpacing: '0.1em',
                                             }}>
                                                 KEY CONTRIBUTIONS
                                             </h3>
@@ -622,7 +777,7 @@ const TeamSection: React.FC = () => {
                                     border: 'none',
                                     fontSize: '1.2rem',
                                     fontWeight: '900',
-                                    fontFamily: 'sink, sans-serif',
+                                    fontFamily: 'Norwige, sans-serif',
                                     cursor: 'pointer',
                                     letterSpacing: '0.1em',
                                     transition: 'all 0.3s ease',
@@ -650,7 +805,7 @@ const TeamSection: React.FC = () => {
                                         border: 'none',
                                         fontSize: '1.2rem',
                                         fontWeight: '900',
-                                        fontFamily: 'sink, sans-serif',
+                                        fontFamily: 'Norwige, sans-serif',
                                         cursor: 'pointer',
                                         letterSpacing: '0.1em',
                                         transition: 'all 0.3s ease',
@@ -773,11 +928,11 @@ const TeamSection: React.FC = () => {
                 }
                 
                 .scroll-left {
-                    animation: scrollLeft 40s linear infinite;
+                    animation: scrollLeft 60s linear infinite;
                 }
                 
                 .scroll-right {
-                    animation: scrollRight 40s linear infinite;
+                    animation: scrollRight 60s linear infinite;
                 }
 
                 .image-card {
@@ -886,7 +1041,7 @@ const TeamSection: React.FC = () => {
                     }
                 }
             `}</style>
-        </section >
+        </section>
     );
 };
 

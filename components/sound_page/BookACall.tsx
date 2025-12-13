@@ -93,7 +93,7 @@ const BookACall = () => {
 
       <div className="flex justify-center mt-10">
         <a
-          href="https://calendly.com/rangeofviewstudios"
+          href="https://calendly.com/rangeofviewmusic/30min"
           target="_blank"
           rel="noopener noreferrer"
         >

@@ -99,7 +99,7 @@ export default function AIAutomationPage() {
                         `}</style>
                     </h1>
 
-                    <Link href="https://calendly.com/rangeofviewstudios" target="_blank">
+                    <Link href="https://calendly.com/rangeofviewmusic/30min" target="_blank">
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
