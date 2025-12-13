@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { User, Video, Headphones, Cpu, ExternalLink } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import StarBorder from "./StarBorder";
 
 interface ServiceCardProps {
   id: string;
@@ -39,12 +40,26 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
+      {!isExpanded && (
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ borderRadius: '24px' }}>
+          <StarBorder
+            as="div"
+            color="#d4af37"
+            speed="4s"
+            thickness={2}
+            className="w-full h-full"
+          >
+            <div className="w-full h-full" />
+          </StarBorder>
+        </div>
+      )}
+
       {/* Glass container */}
       <div
         className={`relative bg-black/50 backdrop-blur-md border-2 rounded-3xl overflow-hidden h-full ${isExpanded ? "p-8" : "p-6"
           } cursor-pointer transition-all duration-300 ${isExpanded
             ? "border-[#d4af37] shadow-[0_0_30px_rgba(212,175,55,0.3)]"
-            : "border-white/10 hover:border-[#d4af37] hover:shadow-[0_0_20px_rgba(212,175,55,0.2)]"
+            : "border-white/10"
           }`}
       >
         {/* Shimmer effect on hover */}
@@ -230,7 +245,7 @@ export default function Services() {
       icon: <Cpu className="w-16 h-16 text-white/80" />,
       description: "Custom automation solutions powered by AI to streamline your business processes.",
       position: "bottom-right" as const,
-      link: "#",
+      link: "/ai-automation",
     },
   ];
 
