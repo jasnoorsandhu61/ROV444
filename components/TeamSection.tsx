@@ -18,6 +18,7 @@ interface TeamMember {
     keyContributions?: string[];
     secretQuote?: string;
     shadowColor?: string;
+    imageRotation?: number;
 }
 
 const teamMembers: TeamMember[] = [
@@ -94,6 +95,43 @@ const teamMembers: TeamMember[] = [
     },
     {
         id: 5,
+        image: "/teammembers/chamantm.jpg",
+        category: "Creative",
+        name: "Chaman",
+        role: "VIDEO EDITOR & MOTION DESIGNER",
+        skills: ["Video Editing", "Motion Graphics", "After Effects Design", "Creative Concepting", "Rapid Turnaround Production"],
+        location: "India",
+        secretQuote: "Fast edits, fresh ideas, flawless execution. 🎬✨",
+        specialties: "Expert video editor who brings fresh creative ideas and fast execution to R.O.V.'s edits and media production. Specializes in After Effects wizardry and communicates seamlessly to turn concepts into polished, dynamic visuals on tight timelines.",
+        tools: ["Adobe After Effects", "Premiere Pro", "Adobe Creative Cloud Suite"],
+        keyContributions: [
+            "Delivers fast, high-quality edits with innovative motion design and visual effects that elevate client campaigns.",
+            "Brings fresh creative ideas that push R.O.V.'s video work forward while maintaining clear communication.",
+            "Ensures reliable execution across all projects with rapid turnaround production."
+        ],
+        shadowColor: "200, 100, 50",
+        imageRotation: -90
+    },
+    {
+        id: 6,
+        image: "/teammembers/davidtm.jpeg",
+        category: "Creative",
+        name: "David",
+        role: "3D CREATIVE DIRECTOR",
+        skills: ["3D Product Visualization", "Custom Texturing", "Modeling", "Lighting & Rendering", "Creative Direction"],
+        location: "USA",
+        secretQuote: "Bringing pixels to life, one render at a time. 🎨✨",
+        specialties: "Creates sophisticated, photorealistic 3D product visualizations using advanced Blender techniques. Specializes in custom texturing, modeling, and lighting that bring digital assets to life with cinematic quality.",
+        tools: ["Blender", "Substance Tools", "Photoshop", "After Effects", "HDRI Libraries"],
+        keyContributions: [
+            "Produced high-end 3D product renders for client campaigns and brand assets.",
+            "Developed custom texturing and modeling workflows for unique visual styles.",
+            "Collaborated on creative direction to integrate 3D into broader brand experiences."
+        ],
+        shadowColor: "100, 150, 200"
+    },
+    {
+        id: 7,
         image: "/teammembers/dakshatm.jpg",
         category: "Tech",
         name: "Daksha",
@@ -111,7 +149,7 @@ const teamMembers: TeamMember[] = [
         shadowColor: "90, 120, 150"
     },
     {
-        id: 6,
+        id: 8,
         image: "/teammembers/jasnoortm.jpg",
         category: "Tech",
         name: "Jasnoor",
@@ -129,7 +167,7 @@ const teamMembers: TeamMember[] = [
         shadowColor: "120, 140, 100"
     },
     {
-        id: 7,
+        id: 9,
         image: "/teammembers/basutm.JPG",
         category: "Tech",
         name: "Basu",
@@ -146,7 +184,7 @@ const teamMembers: TeamMember[] = [
         secretQuote: "Coffee first, code second, creativity always. ☕✨"
     },
     {
-        id: 8,
+        id: 10,
         image: "/teammembers/suchettm.JPG",
         category: "Tech",
         name: "Suchet",
@@ -163,7 +201,7 @@ const teamMembers: TeamMember[] = [
         ]
     },
     {
-        id: 9,
+        id: 11,
         image: "/teammembers/dakshatm.jpg",
         category: "Systems",
         name: "Daksha",
@@ -180,7 +218,7 @@ const teamMembers: TeamMember[] = [
         ]
     },
     {
-        id: 10,
+        id: 12,
         image: "/teammembers/suchettm.JPG",
         category: "Systems",
         name: "Suchet",
@@ -205,7 +243,7 @@ const TeamSection: React.FC = () => {
     const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
     const [showQuote, setShowQuote] = useState(false);
 
-    const ImageCard = useCallback(({ src, alt, stationary = false, onClick, name, role }: { src: string; alt: string, stationary?: boolean, onClick?: () => void, name?: string, role?: string }) => {
+    const ImageCard = useCallback(({ src, alt, stationary = false, onClick, name, role, rotation = 0 }: { src: string; alt: string, stationary?: boolean, onClick?: () => void, name?: string, role?: string, rotation?: number }) => {
         const [isHovered, setIsHovered] = useState(false);
 
         return (
@@ -236,7 +274,9 @@ const TeamSection: React.FC = () => {
                         width: '100%',
                         height: '100%',
                         objectFit: 'cover',
-                        display: 'block'
+                        objectPosition: src.includes('davidtm') ? 'center top' : 'center center',
+                        display: 'block',
+                        transform: rotation !== 0 ? `rotate(${rotation}deg)` : undefined
                     }}
                 />
                 {name && isHovered && (
@@ -350,7 +390,7 @@ const TeamSection: React.FC = () => {
                         exit={{ opacity: 0 }}
                         className="w-full"
                     >
-                        {/* Row 1 - Moving Left */}
+                        {/* Row 1 - Moving Left - Basu, Suchet, Daksha */}
                         <div className="marquee-row">
                             <div className="marquee-track scroll-left">
                                 {[...Array(4)].map((_, i) => (
@@ -358,26 +398,25 @@ const TeamSection: React.FC = () => {
                                         <div className="text-block">
                                             <h2>MEET</h2>
                                         </div>
-                                        <ImageCard src={teamMembers[0].image} alt="Team 1" name={teamMembers[0].name} role={teamMembers[0].role} onClick={() => setSelectedMember(teamMembers[0])} />
-                                        <ImageCard src={teamMembers[1].image} alt="Team 2" name={teamMembers[1].name} role={teamMembers[1].role} onClick={() => setSelectedMember(teamMembers[1])} />
+                                        <ImageCard src={teamMembers[0].image} alt="Basu" name={teamMembers[0].name} role={teamMembers[0].role} onClick={() => setSelectedMember(teamMembers[0])} />
+                                        <ImageCard src={teamMembers[9].image} alt="Suchet" name={teamMembers[9].name} role={teamMembers[9].role} onClick={() => setSelectedMember(teamMembers[9])} />
                                         <button
                                             className="category-button"
                                             onClick={() => setActiveCategory("Creative")}
                                         >
                                             CREATIVE
                                         </button>
-                                        <ImageCard src={teamMembers[2].image} alt="Team 3" name={teamMembers[2].name} role={teamMembers[2].role} onClick={() => setSelectedMember(teamMembers[2])} />
-                                        <ImageCard src={teamMembers[3].image} alt="Team 4" name={teamMembers[3].name} role={teamMembers[3].role} onClick={() => setSelectedMember(teamMembers[3])} />
+                                        <ImageCard src={teamMembers[6].image} alt="Daksha" name={teamMembers[6].name} role={teamMembers[6].role} onClick={() => setSelectedMember(teamMembers[6])} />
                                         <div className="text-block">
                                             <h2>THE</h2>
                                         </div>
-                                        <ImageCard src={teamMembers[4].image} alt="Team 5" name={teamMembers[4].name} role={teamMembers[4].role} onClick={() => setSelectedMember(teamMembers[4])} />
+                                        <ImageCard src={teamMembers[0].image} alt="Basu" name={teamMembers[0].name} role={teamMembers[0].role} onClick={() => setSelectedMember(teamMembers[0])} />
                                     </React.Fragment>
                                 ))}
                             </div>
                         </div>
 
-                        {/* Row 2 - Moving Right */}
+                        {/* Row 2 - Moving Right - Jahnavi, Vaishnavi, Tanvi */}
                         <div className="marquee-row">
                             <div className="marquee-track scroll-right">
                                 {[...Array(4)].map((_, i) => (
@@ -388,28 +427,28 @@ const TeamSection: React.FC = () => {
                                         >
                                             TECH
                                         </button>
-                                        <ImageCard src={teamMembers[4].image} alt="Team 5" name={teamMembers[4].name} role={teamMembers[4].role} onClick={() => setSelectedMember(teamMembers[4])} />
+                                        <ImageCard src={teamMembers[1].image} alt="Jahnavi" name={teamMembers[1].name} role={teamMembers[1].role} onClick={() => setSelectedMember(teamMembers[1])} />
                                         <div className="text-block">
                                             <h2>THE</h2>
                                         </div>
-                                        <ImageCard src={teamMembers[5].image} alt="Team 6" name={teamMembers[5].name} role={teamMembers[5].role} onClick={() => setSelectedMember(teamMembers[5])} />
-                                        <ImageCard src={teamMembers[6].image} alt="Team 7" name={teamMembers[6].name} role={teamMembers[6].role} onClick={() => setSelectedMember(teamMembers[6])} />
+                                        <ImageCard src={teamMembers[2].image} alt="Vaishnavi" name={teamMembers[2].name} role={teamMembers[2].role} onClick={() => setSelectedMember(teamMembers[2])} />
+                                        <ImageCard src={teamMembers[3].image} alt="Tanvi" name={teamMembers[3].name} role={teamMembers[3].role} onClick={() => setSelectedMember(teamMembers[3])} />
                                     </React.Fragment>
                                 ))}
                             </div>
                         </div>
 
-                        {/* Row 3 - Moving Left */}
+                        {/* Row 3 - Moving Left - David, Chaman, Jasnoor */}
                         <div className="marquee-row">
                             <div className="marquee-track scroll-left">
                                 {[...Array(4)].map((_, i) => (
                                     <React.Fragment key={`r3-${i}`}>
-                                        <ImageCard src={teamMembers[8].image} alt="Team 9" name={teamMembers[8].name} role={teamMembers[8].role} onClick={() => setSelectedMember(teamMembers[8])} />
-                                        <ImageCard src={teamMembers[9].image} alt="Team 10" name={teamMembers[9].name} role={teamMembers[9].role} onClick={() => setSelectedMember(teamMembers[9])} />
+                                        <ImageCard src={teamMembers[5].image} alt="David" name={teamMembers[5].name} role={teamMembers[5].role} onClick={() => setSelectedMember(teamMembers[5])} />
+                                        <ImageCard src={teamMembers[4].image} alt="Chaman" name={teamMembers[4].name} role={teamMembers[4].role} onClick={() => setSelectedMember(teamMembers[4])} rotation={teamMembers[4].imageRotation} />
                                         <div className="text-block">
                                             <h2>TEAM</h2>
                                         </div>
-                                        <ImageCard src={teamMembers[8].image} alt="Team 9" name={teamMembers[8].name} role={teamMembers[8].role} onClick={() => setSelectedMember(teamMembers[8])} />
+                                        <ImageCard src={teamMembers[7].image} alt="Jasnoor" name={teamMembers[7].name} role={teamMembers[7].role} onClick={() => setSelectedMember(teamMembers[7])} />
                                         <button
                                             className="category-button"
                                             onClick={() => setActiveCategory("Systems")}
@@ -439,6 +478,7 @@ const TeamSection: React.FC = () => {
                                 stationary={true}
                                 onClick={() => setSelectedMember(member)}
                                 name={member.name}
+                                rotation={member.imageRotation}
                             />
                         ))}
                     </motion.div>
@@ -461,7 +501,7 @@ const TeamSection: React.FC = () => {
                             height: '100%',
                             background: '#F5F5F5',
                             zIndex: 100,
-                            padding: '80px 60px',
+                            padding: '40px 60px',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -521,7 +561,7 @@ const TeamSection: React.FC = () => {
                                 transition={{ delay: 0.1 }}
                                 style={{
                                     position: 'absolute',
-                                    top: '80px',
+                                    top: '20px',
                                     left: '0',
                                     right: '0',
                                     zIndex: 1,
@@ -543,7 +583,7 @@ const TeamSection: React.FC = () => {
                                 layoutId={`card-${selectedMember.image}`}
                                 style={{
                                     position: 'absolute',
-                                    top: '180px',
+                                    top: '120px',
                                     right: '60px',
                                     width: '400px',
                                     height: '400px',
@@ -561,6 +601,8 @@ const TeamSection: React.FC = () => {
                                         width: '100%',
                                         height: '100%',
                                         objectFit: 'cover',
+                                        objectPosition: selectedMember.image.includes('davidtm') ? 'center top' : 'center center',
+                                        transform: selectedMember.imageRotation ? `rotate(${selectedMember.imageRotation}deg)` : undefined
                                     }}
                                 />
                             </motion.div>
