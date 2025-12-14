@@ -80,12 +80,12 @@ const BookACall = () => {
           rel="noopener noreferrer"
         >
           <button style={{ fontFamily: "futura" }} className="relative overflow-hidden bg-[#393632] flex items-center justify-center cursor-pointer text-white rounded-full py-8 px-12 text-3xl font-semibold tracking-widest group">
-            <span className="absolute inset-0 bg-[#bdbdb0]/30 origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-700 ease-in-out"></span>
+            <span className="absolute inset-0 bg-[#bdbdb0]/30 origin-bottom scale-y-0 md:group-hover:scale-y-100 transition-transform duration-700 ease-in-out"></span>
             <span className="relative overflow-hidden flex items-center leading-none h-[1.2em]">
-              <span className="block group-hover:-translate-y-full transition-transform duration-700 ease-in-out">
+              <span className="block md:group-hover:-translate-y-full transition-transform duration-700 ease-in-out">
                 Book a call
               </span>
-              <span className="absolute left-0 top-full block group-hover:top-0 transition-all duration-700 ease-in-out">
+              <span className="absolute left-0 top-full block md:group-hover:top-0 transition-all duration-700 ease-in-out">
                 Book a call
               </span>
             </span>

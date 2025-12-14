@@ -53,7 +53,7 @@ const RightContent = styled.div`
   gap: 30px;
   
   @media (max-width: 768px) {
-    align-items: flex-start;
+    align-items: center;
   }
 `;
 
@@ -66,7 +66,7 @@ const Description = styled.p`
   margin: 0;
   
   @media (max-width: 768px) {
-    text-align: left;
+    text-align: center;
     font-size: 1rem;
   }
 `;
@@ -91,7 +91,7 @@ const CTA = styled(motion.a)`
   }
   
   @media (max-width: 768px) {
-    align-self: flex-start;
+    align-self: center;
   }
 `;
 

@@ -78,7 +78,7 @@ export default function ChatWidget() {
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          className="fixed bottom-6 right-6 h-14 w-14 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white flex items-center justify-center shadow-lg hover:bg-black/70 transition-all overflow-hidden group z-[9999]"
+          className="fixed bottom-28 md:bottom-6 right-6 h-14 w-14 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white flex items-center justify-center shadow-lg hover:bg-black/70 transition-all overflow-hidden group z-[9999]"
           aria-label="Open chat"
         >
           {/* Shimmer effect */}

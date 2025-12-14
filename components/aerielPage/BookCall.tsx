@@ -94,14 +94,14 @@ const BookCall = () => {
         relative overflow-hidden bg-[#393632] futura flex items-center justify-center 
         cursor-pointer text-white md:py-12 py-6 md:px-16 px-10 text-3xl font-semibold tracking-wide group 
         transition-all duration-700 ease-in-out 
-        rounded-[40px_40px_120px_120px] hover:rounded-[20px]
+        rounded-[40px_40px_120px_120px] md:hover:rounded-[20px]
       "
           >
             <span
               className="
           absolute top-3 right-4
           transition-transform duration-500 ease-in-out
-          group-hover:translate-x-2 group-hover:-translate-y-1
+          md:group-hover:translate-x-2 md:group-hover:-translate-y-1
         "
             >
               <ArrowUpRight size={28} strokeWidth={2.5} />

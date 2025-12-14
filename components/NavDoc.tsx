@@ -40,13 +40,13 @@ export function NavigationDock({ className }: NavigationDockProps) {
           <div className="shimmer-effect"></div>
         </div>
 
-        <nav className="flex items-center space-x-2.5 justify-center relative z-10">
+        <nav className="flex items-center space-x-0.5 md:space-x-2.5 justify-center relative z-10 w-full">
           {links.map((link, index) => (
             <div key={link.title} className="flex items-center">
               {link.isLink ? (
                 <Link
                   href={link.to || "#"}
-                  className="px-2.5 py-1.5 text-white/80 hover:text-white transition-colors cursor-pointer text-[13px] md:text-[17px] uppercase tracking-wide"
+                  className="px-1.5 py-1.5 text-white/80 hover:text-white transition-colors cursor-pointer text-[10px] sm:text-[13px] md:text-[17px] uppercase tracking-wide whitespace-nowrap"
                   style={{ fontFamily: "Futura, sans-serif" }}
                 >
                   {link.title}
@@ -54,28 +54,28 @@ export function NavigationDock({ className }: NavigationDockProps) {
               ) : (
                 <button
                   onClick={() => link.to ? scrollToSection(link.to) : setModalOpen(true)}
-                  className="px-2.5 py-1.5 text-white/80 hover:text-white transition-colors cursor-pointer text-[13px] md:text-[17px] uppercase tracking-wide"
+                  className="px-1.5 py-1.5 text-white/80 hover:text-white transition-colors cursor-pointer text-[10px] sm:text-[13px] md:text-[17px] uppercase tracking-wide whitespace-nowrap"
                   style={{ fontFamily: "Futura, sans-serif" }}
                 >
                   {link.title}
                 </button>
               )}
               {index < links.length - 1 && (
-                <span className="text-white/30 hidden md:inline">|</span>
+                <span className="text-white/30 text-[10px] md:text-base mx-0.5">|</span>
               )}
             </div>
           ))}
 
           {/* Menu Button with Hamburger Icon */}
           <div className="flex items-center">
-            <span className="text-white/30 hidden md:inline">|</span>
+            <span className="text-white/30 text-[10px] md:text-base mx-0.5">|</span>
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="px-2.5 py-1.5 text-white/80 hover:text-white transition-colors cursor-pointer flex items-center gap-1.5"
+              className="px-1.5 py-1.5 text-white/80 hover:text-white transition-colors cursor-pointer flex items-center gap-1"
               style={{ fontFamily: "Futura, sans-serif" }}
             >
-              <Menu className="w-[4px] h-[4px] md:w-5 md:h-5" />
-              <span className="text-[13px] md:text-[17px] uppercase tracking-wide">Menu</span>
+              <Menu className="w-3 h-3 md:w-5 md:h-5" />
+              <span className="text-[10px] sm:text-[13px] md:text-[17px] uppercase tracking-wide whitespace-nowrap">Menu</span>
             </button>
           </div>
         </nav>

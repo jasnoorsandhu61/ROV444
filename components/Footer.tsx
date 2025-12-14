@@ -50,7 +50,7 @@ const Footer = () => {
         {/* Footer content wrapper */}
         <div className="relative z-10 col-span-12 grid grid-cols-1 md:grid-cols-12">
           {/* === COLUMN 1: Services === */}
-          <div className="relative py-16 flex flex-col items-start justify-between overflow-hidden col-span-12 md:col-span-3">
+          <div className="relative py-16 flex flex-col items-center justify-between overflow-hidden col-span-12 md:col-span-3">
             <div className="relative z-10 flex flex-col items-center justify-between text-center px-4">
               <p
                 className="uppercase tracking-[4px] text-4xl text-[#f8f2e5] pt-5"
@@ -67,7 +67,7 @@ const Footer = () => {
                 loop
                 muted
                 playsInline
-                className="h-[200px] w-auto object-contain"
+                className="h-[120px] md:h-[200px] w-auto object-contain"
               />
 
               <h2
@@ -168,10 +168,10 @@ const Footer = () => {
           </div>
 
           {/* === COLUMN 3: Local Time === */}
-          <div className="relative py-16 flex flex-col items-end justify-between overflow-hidden col-span-12 md:col-span-3">
+          <div className="relative py-16 flex flex-col items-center justify-between overflow-hidden col-span-12 md:col-span-3">
             <div
               onClick={handleToggle}
-              className="cursor-pointer text-right text-3xl leading-tight text-[#f8f2e5] pr-10 select-none"
+              className="cursor-pointer text-center text-3xl leading-tight text-[#f8f2e5] px-4 md:px-0 select-none"
               style={{ fontFamily: 'Norwige Light, sans-serif' }}
             >
               <p className="tracking-wide">LOCAL TIME</p>
@@ -201,7 +201,7 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className="flex flex-col items-end text-right justify-center flex-grow md:pr-20 pr-5 pl-4 md:pt-0 pt-14">
+            <div className="flex flex-col items-center text-center justify-center flex-grow px-4 md:pt-0 pt-14">
               <h2
                 className="text-[#f8f2e5] text-7xl md:text-8xl tracking-widest uppercase"
                 style={{ fontFamily: 'sink, sans-serif' }}

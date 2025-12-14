@@ -56,7 +56,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 
       {/* Glass container */}
       <div
-        className={`relative bg-black/50 backdrop-blur-md border-2 rounded-3xl overflow-hidden h-full ${isExpanded ? "p-8" : "p-6"
+        className={`relative bg-black/50 backdrop-blur-md border-2 rounded-3xl overflow-hidden h-full ${isExpanded ? "p-6 md:p-8" : "p-4 md:p-6"
           } cursor-pointer transition-all duration-300 ${isExpanded
             ? "border-[#d4af37] shadow-[0_0_30px_rgba(212,175,55,0.3)]"
             : "border-white/10"
@@ -74,7 +74,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
             <div className="flex-1 flex flex-col justify-between">
               <div>
                 <h3
-                  className="text-white/90 text-3xl md:text-4xl lg:text-5xl font-medium uppercase tracking-wider mb-4"
+                  className="text-white/90 text-2xl md:text-3xl lg:text-5xl font-medium uppercase tracking-wider mb-4"
                   style={{ fontFamily: "Futura, sans-serif" }}
                 >
                   {title}
@@ -88,7 +88,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
               </div>
 
               <Link href={link}>
-                <button className="bg-white/90 text-black px-6 py-3 rounded-full font-semibold hover:bg-white transition-colors duration-300 w-fit">
+                <button className="bg-white/90 text-black px-4 py-2 md:px-6 md:py-3 text-sm md:text-base rounded-full font-semibold hover:bg-white transition-colors duration-300 w-fit">
                   Learn More
                 </button>
               </Link>
@@ -255,7 +255,7 @@ export default function Services() {
       <img
         src="/star.svg"
         alt="Star"
-        className="absolute top-16 right-20 w-32 h-32 opacity-90 z-50 pointer-events-none"
+        className="hidden md:block absolute top-16 right-5 md:right-20 w-16 h-16 md:w-32 md:h-32 opacity-90 z-50 pointer-events-none"
         style={{
           animation: "float 6s ease-in-out infinite",
         }}
@@ -264,7 +264,7 @@ export default function Services() {
       <img
         src="/star2.svg"
         alt="Star"
-        className={`absolute top-[40%] left-1/2 -translate-x-1/2 w-28 h-28 z-50 pointer-events-none transition-opacity duration-500 ${expandedCard ? "opacity-0" : "opacity-85"
+        className={`hidden md:block absolute top-[40%] left-1/2 -translate-x-1/2 w-16 h-16 md:w-28 md:h-28 z-50 pointer-events-none transition-opacity duration-500 ${expandedCard ? "opacity-0" : "opacity-85"
           }`}
         style={{
           animation: "float 7s ease-in-out infinite",
@@ -274,7 +274,7 @@ export default function Services() {
       <img
         src="/ques.svg"
         alt="Question"
-        className="absolute bottom-28 left-16 w-28 h-28 opacity-90 z-50 pointer-events-none"
+        className="absolute bottom-28 left-5 md:left-16 w-16 h-16 md:w-28 md:h-28 opacity-90 z-50 pointer-events-none"
         style={{
           animation: "float 8s ease-in-out infinite",
         }}
@@ -283,7 +283,7 @@ export default function Services() {
       <img
         src="/star3.svg"
         alt="Star"
-        className="absolute bottom-20 right-16 w-32 h-32 opacity-85 z-50 pointer-events-none"
+        className="absolute bottom-10 md:bottom-20 right-5 md:right-16 w-16 h-16 md:w-32 md:h-32 opacity-85 z-50 pointer-events-none"
         style={{
           animation: "float 6.5s ease-in-out infinite",
         }}
@@ -303,27 +303,45 @@ export default function Services() {
 
           .services-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(2, 1fr);
+            grid-template-columns: 1fr;
             gap: 1.5rem;
-            height: 800px;
-            max-height: 85vh;
+            min-height: auto;
+          }
+
+          @media (min-width: 768px) {
+            .services-grid {
+              grid-template-columns: repeat(2, 1fr);
+              grid-template-rows: repeat(2, 1fr);
+              height: 800px;
+              max-height: 85vh;
+            }
           }
 
           .services-grid.has-expanded {
-            grid-template-columns: 2fr 1fr;
-            grid-template-rows: repeat(3, 1fr);
-            height: 800px;
-            max-height: 85vh;
+             /* Mobile behavior when expanded: Expanded card takes order -1 to go top, others show below or hide? 
+                Actually, simpler to just stack them on mobile and expand in place. 
+                The 'grid-column' logic below is desktop specific.
+             */
+             grid-template-columns: 1fr;
+             grid-template-rows: auto;
           }
 
-          .expanded-card {
-            grid-column: 1 / 2;
-            grid-row: 1 / 4;
-          }
+          @media (min-width: 768px) {
+            .services-grid.has-expanded {
+              grid-template-columns: 2fr 1fr;
+              grid-template-rows: repeat(3, 1fr);
+              height: 800px;
+              max-height: 85vh;
+            }
 
-          .collapsed-card {
-            grid-column: 2 / 3;
+            .expanded-card {
+              grid-column: 1 / 2;
+              grid-row: 1 / 4;
+            }
+
+            .collapsed-card {
+              grid-column: 2 / 3;
+            }
           }
 
           .normal-card {
@@ -347,7 +365,7 @@ export default function Services() {
 
         <div className="text-center mb-12">
           <h2
-            className="text-4xl md:text-6xl lg:text-7xl text-white/90 uppercase tracking-wider mb-4"
+            className="text-4xl md:text-6xl lg:text-[10rem] text-white/90 uppercase tracking-wider mb-4"
             style={{ fontFamily: "Sink, sans-serif" }}
           >
             SERVICES

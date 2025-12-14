@@ -285,16 +285,7 @@ const TeamSection: React.FC = () => {
         return (
             <motion.div
                 layoutId={stationary ? `card-${src}` : undefined}
-                className="image-card"
-                style={{
-                    width: '600px',
-                    height: '338px',
-                    borderRadius: '20px',
-                    overflow: 'hidden',
-                    flexShrink: 0,
-                    position: 'relative',
-                    cursor: 'pointer'
-                }}
+                className="image-card md:w-[450px] md:h-[253px] w-[240px] h-[135px] rounded-[20px] overflow-hidden shrink-0 relative cursor-pointer"
                 initial={stationary ? { opacity: 0, scale: 0.9 } : undefined}
                 animate={stationary ? { opacity: 1, scale: 1 } : undefined}
                 exit={stationary ? { opacity: 0, scale: 0.9 } : undefined}
@@ -369,615 +360,429 @@ const TeamSection: React.FC = () => {
     const filteredMembers = teamMembers.filter(m => m.category === activeCategory);
 
     return (
-        <section
-            style={{
-                borderRadius: "20px",
-                background: `
+        <>
+            <section
+                style={{
+                    borderRadius: "20px",
+                    background: `
                     radial-gradient(ellipse 800px 600px at 50% 120%, 
                         rgba(218, 165, 32, 0.4) 0%, 
                         rgba(184, 134, 11, 0.3) 30%, 
                         transparent 70%),
                     rgba(255, 255, 255, 0.05)
                 `,
-                backdropFilter: "blur(20px)",
-                border: "1px solid rgba(255, 255, 255, 0.1)",
-                minHeight: "100vh",
-                padding: "80px 0",
-                position: "relative",
-                overflow: "hidden",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-            }}
-        >
-            {/* Filter UI - Top Middle */}
-            <div className="z-50 mb-12 flex gap-4 bg-white/10 backdrop-blur-md p-2 rounded-full border border-white/20 relative">
-                <button
-                    onClick={() => setActiveCategory("All")}
-                    className={`px-6 py-2 rounded-full text-lg font-bold transition-all duration-300 font-futura ${activeCategory === "All"
-                        ? "bg-white shadow-lg"
-                        : "hover:bg-white/10"
-                        }`}
-                    style={{ fontFamily: 'Norwige, sans-serif', color: activeCategory === "All" ? "black" : "white" }}
-                >
-                    ALL
-                </button>
-                {categories.map((cat) => (
+                    backdropFilter: "blur(20px)",
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                    minHeight: "100vh",
+                    padding: "40px 0",
+                    position: "relative",
+                    overflow: "hidden",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                }}
+            >
+                {/* Filter UI - Top Middle */}
+                <div className="z-50 mb-12 flex gap-4 bg-white/10 backdrop-blur-md p-2 rounded-full border border-white/20 relative">
                     <button
-                        key={cat}
-                        onClick={() => setActiveCategory(cat)}
-                        className={`px-6 py-2 rounded-full text-lg font-bold transition-all duration-300 font-futura ${activeCategory === cat
+                        onClick={() => setActiveCategory("All")}
+                        className={`px-3 py-1 md:px-6 md:py-2 rounded-full text-xs md:text-lg font-bold transition-all duration-300 font-futura ${activeCategory === "All"
                             ? "bg-white shadow-lg"
                             : "hover:bg-white/10"
                             }`}
-                        style={{ fontFamily: 'Norwige, sans-serif', color: activeCategory === cat ? "black" : "white" }}
+                        style={{ fontFamily: 'Norwige, sans-serif', color: activeCategory === "All" ? "black" : "white" }}
                     >
-                        {cat.toUpperCase()}
+                        ALL
                     </button>
-                ))}
-            </div>
+                    {categories.map((cat) => (
+                        <button
+                            key={cat}
+                            onClick={() => setActiveCategory(cat)}
+                            className={`px-3 py-1 md:px-6 md:py-2 rounded-full text-xs md:text-lg font-bold transition-all duration-300 font-futura ${activeCategory === cat
+                                ? "bg-white shadow-lg"
+                                : "hover:bg-white/10"
+                                }`}
+                            style={{ fontFamily: 'Norwige, sans-serif', color: activeCategory === cat ? "black" : "white" }}
+                        >
+                            {cat.toUpperCase()}
+                        </button>
+                    ))}
+                </div>
 
-            <div style={{ width: "100%", flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                {activeCategory === "All" && (
-                    <motion.div
-                        key="marquee"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="w-full"
-                    >
-                        {/* Row 1 - Moving Left - Basu, Suchet, Daksha, Jahnavi */}
-                        <div className="marquee-row">
-                            <div className="marquee-track scroll-left">
-                                {[...Array(4)].map((_, i) => (
-                                    <React.Fragment key={`r1-${i}`}>
-                                        <div className="text-block">
-                                            <h2>MEET</h2>
-                                        </div>
-                                        <ImageCard src={teamMembers[0].image} alt="Basu" name={teamMembers[0].name} role={teamMembers[0].role} onClick={() => setSelectedMember(teamMembers[0])} />
-                                        <ImageCard src={teamMembers[9].image} alt="Suchet" name={teamMembers[9].name} role={teamMembers[9].role} onClick={() => setSelectedMember(teamMembers[9])} />
-                                        <button
-                                            className="category-button"
-                                            onClick={() => setActiveCategory("Creative")}
-                                        >
-                                            CREATIVE
-                                        </button>
-                                        <ImageCard src={teamMembers[6].image} alt="Daksha" name={teamMembers[6].name} role={teamMembers[6].role} onClick={() => setSelectedMember(teamMembers[6])} />
-                                        <ImageCard src={teamMembers[1].image} alt="Jahnavi" name={teamMembers[1].name} role={teamMembers[1].role} onClick={() => setSelectedMember(teamMembers[1])} />
-                                    </React.Fragment>
-                                ))}
+                <div style={{ width: "100%", flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    {activeCategory === "All" && (
+                        <motion.div
+                            key="marquee"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="w-full"
+                        >
+                            {/* Row 1 - Moving Left - Basu, Suchet, Daksha, Jahnavi */}
+                            <div className="marquee-row">
+                                <div className="marquee-track scroll-left">
+                                    {[...Array(4)].map((_, i) => (
+                                        <React.Fragment key={`r1-${i}`}>
+                                            <div className="text-block">
+                                                <h2>MEET</h2>
+                                            </div>
+                                            <ImageCard src={teamMembers[0].image} alt="Basu" name={teamMembers[0].name} role={teamMembers[0].role} onClick={() => setSelectedMember(teamMembers[0])} />
+                                            <ImageCard src={teamMembers[9].image} alt="Suchet" name={teamMembers[9].name} role={teamMembers[9].role} onClick={() => setSelectedMember(teamMembers[9])} />
+                                            <button
+                                                className="category-button"
+                                                onClick={() => setActiveCategory("Creative")}
+                                            >
+                                                CREATIVE
+                                            </button>
+                                            <ImageCard src={teamMembers[6].image} alt="Daksha" name={teamMembers[6].name} role={teamMembers[6].role} onClick={() => setSelectedMember(teamMembers[6])} />
+                                            <ImageCard src={teamMembers[1].image} alt="Jahnavi" name={teamMembers[1].name} role={teamMembers[1].role} onClick={() => setSelectedMember(teamMembers[1])} />
+                                        </React.Fragment>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
 
-                        {/* Row 2 - Moving Right - Kavya, Jiwon, Vaishnavi, Tanvi */}
-                        <div className="marquee-row">
-                            <div className="marquee-track scroll-right">
-                                {[...Array(4)].map((_, i) => (
-                                    <React.Fragment key={`r2-${i}`}>
-                                        <button
-                                            className="category-button"
-                                            onClick={() => setActiveCategory("Tech")}
-                                        >
-                                            TECH
-                                        </button>
-                                        <ImageCard src={teamMembers[12].image} alt="Kavya" name={teamMembers[12].name} role={teamMembers[12].role} onClick={() => setSelectedMember(teamMembers[12])} />
-                                        <ImageCard src={teamMembers[13].image} alt="Jiwon" name={teamMembers[13].name} role={teamMembers[13].role} onClick={() => setSelectedMember(teamMembers[13])} />
-                                        <div className="text-block">
-                                            <h2>THE</h2>
-                                        </div>
-                                        <ImageCard src={teamMembers[2].image} alt="Vaishnavi" name={teamMembers[2].name} role={teamMembers[2].role} onClick={() => setSelectedMember(teamMembers[2])} />
-                                        <ImageCard src={teamMembers[3].image} alt="Tanvi" name={teamMembers[3].name} role={teamMembers[3].role} onClick={() => setSelectedMember(teamMembers[3])} />
-                                    </React.Fragment>
-                                ))}
+                            {/* Row 2 - Moving Right - Kavya, Jiwon, Vaishnavi, Tanvi */}
+                            <div className="marquee-row">
+                                <div className="marquee-track scroll-right">
+                                    {[...Array(4)].map((_, i) => (
+                                        <React.Fragment key={`r2-${i}`}>
+                                            <button
+                                                className="category-button"
+                                                onClick={() => setActiveCategory("Tech")}
+                                            >
+                                                TECH
+                                            </button>
+                                            <ImageCard src={teamMembers[12].image} alt="Kavya" name={teamMembers[12].name} role={teamMembers[12].role} onClick={() => setSelectedMember(teamMembers[12])} />
+                                            <ImageCard src={teamMembers[13].image} alt="Jiwon" name={teamMembers[13].name} role={teamMembers[13].role} onClick={() => setSelectedMember(teamMembers[13])} />
+                                            <div className="text-block">
+                                                <h2>THE</h2>
+                                            </div>
+                                            <ImageCard src={teamMembers[2].image} alt="Vaishnavi" name={teamMembers[2].name} role={teamMembers[2].role} onClick={() => setSelectedMember(teamMembers[2])} />
+                                            <ImageCard src={teamMembers[3].image} alt="Tanvi" name={teamMembers[3].name} role={teamMembers[3].role} onClick={() => setSelectedMember(teamMembers[3])} />
+                                        </React.Fragment>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
 
-                        {/* Row 3 - Moving Left - David, Chaman, Jasnoor, Suchet */}
-                        <div className="marquee-row">
-                            <div className="marquee-track scroll-left">
-                                {[...Array(4)].map((_, i) => (
-                                    <React.Fragment key={`r3-${i}`}>
-                                        <ImageCard src={teamMembers[5].image} alt="David" name={teamMembers[5].name} role={teamMembers[5].role} onClick={() => setSelectedMember(teamMembers[5])} />
-                                        <ImageCard src={teamMembers[4].image} alt="Chaman" name={teamMembers[4].name} role={teamMembers[4].role} onClick={() => setSelectedMember(teamMembers[4])} rotation={teamMembers[4].imageRotation} />
-                                        <div className="text-block">
-                                            <h2>TEAM</h2>
-                                        </div>
-                                        <ImageCard src={teamMembers[7].image} alt="Jasnoor" name={teamMembers[7].name} role={teamMembers[7].role} onClick={() => setSelectedMember(teamMembers[7])} />
-                                        <ImageCard src={teamMembers[10].image} alt="Suchet" name={teamMembers[10].name} role={teamMembers[10].role} onClick={() => setSelectedMember(teamMembers[10])} />
-                                        <button
-                                            className="category-button"
-                                            onClick={() => setActiveCategory("Systems")}
-                                        >
-                                            SYSTEMS
-                                        </button>
-                                    </React.Fragment>
-                                ))}
+                            {/* Row 3 - Moving Left - David, Chaman, Jasnoor, Suchet */}
+                            <div className="marquee-row">
+                                <div className="marquee-track scroll-left">
+                                    {[...Array(4)].map((_, i) => (
+                                        <React.Fragment key={`r3-${i}`}>
+                                            <ImageCard src={teamMembers[5].image} alt="David" name={teamMembers[5].name} role={teamMembers[5].role} onClick={() => setSelectedMember(teamMembers[5])} />
+                                            <ImageCard src={teamMembers[4].image} alt="Chaman" name={teamMembers[4].name} role={teamMembers[4].role} onClick={() => setSelectedMember(teamMembers[4])} rotation={teamMembers[4].imageRotation} />
+                                            <div className="text-block">
+                                                <h2>TEAM</h2>
+                                            </div>
+                                            <ImageCard src={teamMembers[7].image} alt="Jasnoor" name={teamMembers[7].name} role={teamMembers[7].role} onClick={() => setSelectedMember(teamMembers[7])} />
+                                            <ImageCard src={teamMembers[10].image} alt="Suchet" name={teamMembers[10].name} role={teamMembers[10].role} onClick={() => setSelectedMember(teamMembers[10])} />
+                                            <button
+                                                className="category-button"
+                                                onClick={() => setActiveCategory("Systems")}
+                                            >
+                                                SYSTEMS
+                                            </button>
+                                        </React.Fragment>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                    </motion.div>
-                )}
+                        </motion.div>
+                    )}
 
-                {activeCategory !== "All" && (
-                    <motion.div
-                        key={activeCategory}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="w-full flex justify-center pb-20"
-                    >
-                        <TeamGallery
-                            members={filteredMembers}
-                            onMemberSelect={(member) => setSelectedMember(member)}
-                        />
-                    </motion.div>
-                )}
-            </div>
+                    {activeCategory !== "All" && (
+                        <motion.div
+                            key={activeCategory}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="w-full flex justify-center pb-20"
+                        >
+                            <TeamGallery
+                                members={filteredMembers}
+                                onMemberSelect={(member) => setSelectedMember(member)}
+                            />
+                        </motion.div>
+                    )}
+                </div>
+
+            </section>
 
             {/* Portfolio Detail View */}
             <AnimatePresence>
-                {selectedMember && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        style={{
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            width: '100%',
-                            height: '100%',
-                            background: '#F5F5F5',
-                            zIndex: 100,
-                            padding: '40px 60px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            overflow: 'hidden',
-                        }}
-                    >
-                        {/* Close Button */}
-                        <button
-                            onClick={() => setSelectedMember(null)}
-                            onClickCapture={() => setShowQuote(false)}
-                            style={{
-                                position: 'absolute',
-                                top: '40px',
-                                right: '40px',
-                                background: 'black',
-                                border: 'none',
-                                borderRadius: '50%',
-                                width: '50px',
-                                height: '50px',
-                                cursor: 'pointer',
-                                fontSize: '24px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                zIndex: 102,
-                                fontFamily: 'sink, sans-serif',
-                                color: 'white',
-                            }}
+                {
+                    selectedMember && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="fixed inset-0 z-[100] flex items-center justify-center bg-[#F5F5F5] p-0 md:p-[40px] lg:p-[60px]"
                         >
-                            ×
-                        </button>
+                            {/* Mobile wrapper for scrolling */}
+                            <div className="w-full h-full overflow-y-auto overflow-x-hidden relative flex flex-col md:block">
 
-                        {/* Counter */}
-                        <div style={{
-                            position: 'absolute',
-                            top: '40px',
-                            left: '40px',
-                            fontFamily: 'sink, sans-serif',
-                            fontSize: '0.9rem',
-                            color: 'black',
-                            letterSpacing: '0.05em',
-                        }}>
-                            {filteredMembers.findIndex(m => m.id === selectedMember.id) + 1}/{filteredMembers.length}
-                        </div>
-
-                        {/* Main Content - Positioned Absolutely for Overlapping */}
-                        <div style={{
-                            position: 'relative',
-                            width: '100%',
-                            maxWidth: '1200px',
-                            height: '900px',
-                        }}>
-                            {/* Large Overlapping Title */}
-                            <motion.div
-                                initial={{ opacity: 0, y: -30 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.1 }}
-                                style={{
-                                    position: 'absolute',
-                                    top: '20px',
-                                    left: '0',
-                                    right: '0',
-                                    zIndex: 1,
-                                    fontFamily: 'sink, sans-serif',
-                                    fontSize: 'clamp(1.5rem, 3.5vw, 3rem)',
-                                    fontWeight: '900',
-                                    color: 'black',
-                                    letterSpacing: '0.05em',
-                                    lineHeight: '1.1',
-                                    textAlign: 'center',
-                                    paddingLeft: '0',
-                                }}
-                            >
-                                {selectedMember.role}
-                            </motion.div>
-
-                            {/* Center Image - Overlapped by Title */}
-                            <motion.div
-                                layoutId={`card-${selectedMember.image}`}
-                                style={{
-                                    position: 'absolute',
-                                    top: '120px',
-                                    right: '60px',
-                                    width: '400px',
-                                    height: '400px',
-                                    borderRadius: '20px',
-                                    overflow: 'hidden',
-                                    zIndex: 4,
-                                    border: `3px solid rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.6)`,
-                                    boxShadow: `0 15px 50px rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.5), 0 5px 20px rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.4), 0 0 0 1px rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.2)`,
-                                }}
-                            >
-                                <img
-                                    src={selectedMember.image}
-                                    alt={selectedMember.name}
-                                    style={{
-                                        width: '100%',
-                                        height: '100%',
-                                        objectFit: 'cover',
-                                        objectPosition: 'center center',
-                                        transform: selectedMember.imageRotation ? `rotate(${selectedMember.imageRotation}deg)` : undefined
-                                    }}
-                                />
-                            </motion.div>
-
-                            {/* Skills - Left Side, Overlapping Bottom of Image */}
-                            <motion.div
-                                initial={{ opacity: 0, x: -30 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 0.2 }}
-                                style={{
-                                    position: 'absolute',
-                                    left: '0',
-                                    bottom: '360px',
-                                    zIndex: 3,
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    gap: '8px',
-                                }}
-                            >
-                                {selectedMember.skills.map((skill, index) => (
-                                    <div
-                                        key={index}
-                                        style={{
-                                            fontFamily: 'sink, sans-serif',
-                                            fontSize: 'clamp(1rem, 2vw, 1.3rem)',
-                                            color: 'black',
-                                            fontWeight: '700',
-                                            letterSpacing: '0.02em',
-                                        }}
-                                    >
-                                        /{skill.toUpperCase()}
-                                    </div>
-                                ))}
-                            </motion.div>
-
-                            {/* Location - Right Side */}
-                            <motion.div
-                                initial={{ opacity: 0, x: 30 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 0.2 }}
-                                style={{
-                                    position: 'absolute',
-                                    right: '0',
-                                    top: '20px',
-                                    zIndex: 3,
-                                    fontFamily: 'Norwige, sans-serif',
-                                    fontSize: 'clamp(0.7rem, 1.2vw, 0.9rem)',
-                                    color: 'black',
-                                    fontWeight: '600',
-                                    letterSpacing: '0.3em',
-                                    textTransform: 'uppercase',
-                                }}
-                            >
-                                BASED IN {selectedMember.location.toUpperCase()}
-                            </motion.div>
-
-                            {/* Additional Portfolio Information - Only for members with extended data */}
-                            {(selectedMember.specialties || selectedMember.tools || selectedMember.keyContributions) && (
-                                <motion.div
-                                    initial={{ opacity: 0, y: 30 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.3 }}
-                                    style={{
-                                        position: 'absolute',
-                                        bottom: '80px',
-                                        left: '0',
-                                        right: '0',
-                                        zIndex: 3,
-                                        display: 'grid',
-                                        gridTemplateColumns: '1fr 1fr 1fr',
-                                        gap: '40px',
-                                        paddingTop: '40px',
-                                    }}
-                                >
-                                    {/* Specialties */}
-                                    {selectedMember.specialties && (
-                                        <div>
-                                            <h3 style={{
-                                                fontFamily: 'sink, sans-serif',
-                                                fontSize: '1.1rem',
-                                                fontWeight: '900',
-                                                color: 'black',
-                                                marginBottom: '12px',
-                                                letterSpacing: '0.1em',
-                                            }}>
-                                                SPECIALTIES
-                                            </h3>
-                                            <p style={{
-                                                fontFamily: 'Norwige, sans-serif',
-                                                fontSize: '0.85rem',
-                                                lineHeight: '1.6',
-                                                color: '#333',
-                                                margin: 0,
-                                            }}>
-                                                {selectedMember.specialties}
-                                            </p>
-                                        </div>
-                                    )}
-
-                                    {/* Tools */}
-                                    {selectedMember.tools && (
-                                        <div>
-                                            <h3 style={{
-                                                fontFamily: 'sink, sans-serif',
-                                                fontSize: '1.1rem',
-                                                fontWeight: '900',
-                                                color: 'black',
-                                                marginBottom: '12px',
-                                                letterSpacing: '0.1em',
-                                            }}>
-                                                TOOLS
-                                            </h3>
-                                            <div style={{
-                                                display: 'flex',
-                                                flexDirection: 'column',
-                                                gap: '6px',
-                                            }}>
-                                                {selectedMember.tools.map((tool, index) => (
-                                                    <div
-                                                        key={index}
-                                                        style={{
-                                                            fontFamily: 'Norwige, sans-serif',
-                                                            fontSize: '0.85rem',
-                                                            color: '#333',
-                                                        }}
-                                                    >
-                                                        • {tool}
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
-
-                                    {/* Key Contributions */}
-                                    {selectedMember.keyContributions && (
-                                        <div>
-                                            <h3 style={{
-                                                fontFamily: 'sink, sans-serif',
-                                                fontSize: '1.1rem',
-                                                fontWeight: '900',
-                                                color: 'black',
-                                                marginBottom: '12px',
-                                                letterSpacing: '0.1em',
-                                            }}>
-                                                KEY CONTRIBUTIONS
-                                            </h3>
-                                            <div style={{
-                                                display: 'flex',
-                                                flexDirection: 'column',
-                                                gap: '8px',
-                                            }}>
-                                                {selectedMember.keyContributions.map((contribution, index) => (
-                                                    <div
-                                                        key={index}
-                                                        style={{
-                                                            fontFamily: 'Norwige, sans-serif',
-                                                            fontSize: '0.85rem',
-                                                            lineHeight: '1.5',
-                                                            color: '#333',
-                                                        }}
-                                                    >
-                                                        • {contribution}
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
-                                </motion.div>
-                            )}
-                        </div>
-
-                        {/* Counter */}
-                        <div style={{
-                            position: 'absolute',
-                            top: '40px',
-                            left: '40px',
-                            fontFamily: 'sink, sans-serif',
-                            fontSize: '0.9rem',
-                            color: 'black',
-                            letterSpacing: '0.05em',
-                            zIndex: 101,
-                        }}>
-                            {(() => {
-                                const currentIndex = filteredMembers.findIndex(m => m.id === selectedMember.id);
-                                return `${currentIndex + 1}/${filteredMembers.length}`;
-                            })()}
-                        </div>
-
-                        {/* Vertical Team Category Navigation */}
-                        <div style={{
-                            position: 'absolute',
-                            left: '20px',
-                            top: '50%',
-                            transform: 'translateY(-50%)',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            gap: '15px',
-                            zIndex: 101,
-                        }}>
-                            <button
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    setShowQuote(false);
-                                    setActiveCategory("All");
-                                    setSelectedMember(null);
-                                }}
-                                style={{
-                                    writingMode: 'vertical-rl',
-                                    textOrientation: 'mixed',
-                                    background: activeCategory === "All" ? 'white' : 'rgba(0, 0, 0, 0.8)',
-                                    color: activeCategory === "All" ? 'black' : 'white',
-                                    padding: '30px 15px',
-                                    borderRadius: '15px',
-                                    border: 'none',
-                                    fontSize: '1.2rem',
-                                    fontWeight: '900',
-                                    fontFamily: 'Norwige, sans-serif',
-                                    cursor: 'pointer',
-                                    letterSpacing: '0.1em',
-                                    transition: 'all 0.3s ease',
-                                    boxShadow: activeCategory === "All" ? '0 4px 15px rgba(255, 255, 255, 0.3)' : '0 2px 10px rgba(0, 0, 0, 0.2)',
-                                }}
-                            >
-                                ALL
-                            </button>
-                            {categories.map((cat) => (
+                                {/* Close Button */}
                                 <button
-                                    key={cat}
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        setShowQuote(false);
-                                        setActiveCategory(cat);
-                                        setSelectedMember(null);
-                                    }}
-                                    style={{
-                                        writingMode: 'vertical-rl',
-                                        textOrientation: 'mixed',
-                                        background: activeCategory === cat ? 'white' : 'rgba(0, 0, 0, 0.8)',
-                                        color: activeCategory === cat ? 'black' : 'white',
-                                        padding: '30px 15px',
-                                        borderRadius: '15px',
-                                        border: 'none',
-                                        fontSize: '1.2rem',
-                                        fontWeight: '900',
-                                        fontFamily: 'Norwige, sans-serif',
-                                        cursor: 'pointer',
-                                        letterSpacing: '0.1em',
-                                        transition: 'all 0.3s ease',
-                                        boxShadow: activeCategory === cat ? '0 4px 15px rgba(255, 255, 255, 0.3)' : '0 2px 10px rgba(0, 0, 0, 0.2)',
-                                    }}
+                                    onClick={() => setSelectedMember(null)}
+                                    onClickCapture={() => setShowQuote(false)}
+                                    className="fixed md:absolute top-4 right-4 md:top-10 md:right-10 w-10 h-10 md:w-[50px] md:h-[50px] bg-black text-white rounded-full border-none cursor-pointer flex items-center justify-center z-[105] font-sink text-lg md:text-2xl shadow-lg hover:scale-110 transition-transform"
                                 >
-                                    {cat.toUpperCase()}
+                                    ×
                                 </button>
-                            ))}
-                        </div>
 
+                                {/* Counter */}
+                                <div className="absolute top-4 left-4 md:top-10 md:left-10 font-sink text-sm md:text-base text-black tracking-widest z-[102]">
+                                    {filteredMembers.findIndex(m => m.id === selectedMember.id) + 1}/{filteredMembers.length}
+                                </div>
 
-                        {/* Secret Quote Button */}
-                        {selectedMember.secretQuote && (
-                            <>
-                                <motion.button
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        setShowQuote(!showQuote);
-                                    }}
-                                    whileHover={{ scale: 1.1, rotate: 15 }}
-                                    whileTap={{ scale: 0.9 }}
-                                    animate={{
-                                        y: [0, -10, 0],
-                                    }}
-                                    transition={{
-                                        y: {
-                                            duration: 2,
-                                            repeat: Infinity,
-                                            ease: "easeInOut"
-                                        }
-                                    }}
-                                    style={{
-                                        position: 'absolute',
-                                        right: '120px',
-                                        bottom: '40px',
-                                        background: 'linear-gradient(135deg, #FFD700, #FFA500)',
-                                        border: 'none',
-                                        borderRadius: '50%',
-                                        width: '50px',
-                                        height: '50px',
-                                        cursor: 'pointer',
-                                        fontSize: '24px',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        zIndex: 101,
-                                        boxShadow: '0 4px 15px rgba(255, 215, 0, 0.4)',
-                                    }}
-                                >
-                                    💭
-                                </motion.button>
+                                {/* Main Content Container */}
+                                <div className="relative w-full max-w-7xl mx-auto min-h-screen md:min-h-[900px] flex flex-col md:block p-6 pt-20 md:p-0">
 
-                                {/* Quote Tooltip */}
-                                <AnimatePresence>
-                                    {showQuote && (
+                                    {/* --- MOBILE VIEW (Stacks Vertically) --- */}
+                                    <div className="md:hidden flex flex-col items-center text-center pb-20">
+
+                                        {/* Mobile: Role Title */}
+                                        <h2
+                                            className="font-sink text-3xl font-black text-black tracking-wider leading-tight mb-2"
+                                            style={{ color: 'black' }}
+                                        >
+                                            {selectedMember.role}
+                                        </h2>
+
+                                        {/* Mobile: Location */}
+                                        <p className="font-norwige text-xs uppercase tracking-[0.2em] font-bold text-black/80 mb-8">
+                                            BASED IN {selectedMember.location.toUpperCase()}
+                                        </p>
+
+                                        {/* Mobile: Image */}
                                         <motion.div
-                                            initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                                            exit={{ opacity: 0, y: 20, scale: 0.8 }}
-                                            transition={{ duration: 0.3 }}
+                                            layoutId={`card-mobile-${selectedMember.image}`}
+                                            className="relative w-full max-w-[300px] aspect-[4/5] rounded-2xl overflow-hidden mb-8"
                                             style={{
-                                                position: 'absolute',
-                                                right: '120px',
-                                                bottom: '100px',
-                                                background: 'linear-gradient(135deg, #FFD700, #FFA500)',
-                                                padding: '20px 25px',
-                                                borderRadius: '20px',
-                                                maxWidth: '300px',
-                                                zIndex: 102,
-                                                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.3)',
+                                                border: `3px solid rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.6)`,
+                                                boxShadow: `0 15px 50px rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.5)`
                                             }}
                                         >
-                                            <p style={{
-                                                fontFamily: 'Norwige, sans-serif',
-                                                fontSize: '1rem',
-                                                color: '#000',
-                                                margin: 0,
-                                                fontWeight: '600',
-                                                lineHeight: '1.5',
-                                            }}>
-                                                {selectedMember.secretQuote}
-                                            </p>
-                                            {/* Triangle pointer */}
-                                            <div style={{
-                                                position: 'absolute',
-                                                bottom: '-10px',
-                                                right: '15px',
-                                                width: 0,
-                                                height: 0,
-                                                borderLeft: '10px solid transparent',
-                                                borderRight: '10px solid transparent',
-                                                borderTop: '10px solid #FFA500',
-                                            }} />
+                                            <img
+                                                src={selectedMember.image}
+                                                alt={selectedMember.name}
+                                                className="w-full h-full object-cover object-center"
+                                                style={{ transform: selectedMember.imageRotation ? `rotate(${selectedMember.imageRotation}deg)` : undefined }}
+                                            />
                                         </motion.div>
-                                    )}
-                                </AnimatePresence>
-                            </>
-                        )}
-                    </motion.div>
-                )}
-            </AnimatePresence>
+
+                                        {/* Mobile: Skills */}
+                                        <div className="flex flex-wrap justify-center gap-2 mb-8">
+                                            {selectedMember.skills.map((skill, index) => (
+                                                <div key={index} className="font-sink text-lg text-black font-bold tracking-[0.02em]">
+                                                    /{skill.toUpperCase()}
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        {/* Mobile: Info Grid (Stacked) */}
+                                        <div className="flex flex-col gap-8 w-full px-4 text-left">
+                                            {selectedMember.specialties && (
+                                                <div>
+                                                    <h3 className="font-sink text-lg font-black text-black mb-3 tracking-[0.1em]">SPECIALTIES</h3>
+                                                    <p className="font-norwige text-sm text-[#333] leading-relaxed">{selectedMember.specialties}</p>
+                                                </div>
+                                            )}
+
+                                            {selectedMember.tools && (
+                                                <div>
+                                                    <h3 className="font-sink text-lg font-black text-black mb-3 tracking-[0.1em]">TOOLS</h3>
+                                                    {selectedMember.tools.map((t, i) => (
+                                                        <div key={i} className="font-norwige text-sm text-[#333]">• {t}</div>
+                                                    ))}
+                                                </div>
+                                            )}
+
+                                            {selectedMember.keyContributions && (
+                                                <div>
+                                                    <h3 className="font-sink text-lg font-black text-black mb-3 tracking-[0.1em]">KEY CONTRIBUTIONS</h3>
+                                                    {selectedMember.keyContributions.map((c, i) => (
+                                                        <div key={i} className="font-norwige text-sm text-[#333]">• {c}</div>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    {/* --- DESKTOP VIEW (Flex Row) --- */}
+                                    <div className="hidden md:flex flex-row items-start justify-between w-full h-full pt-[60px] px-[5%] gap-8">
+
+                                        {/* Left Column: Title, Skills, Info */}
+                                        <div className="flex flex-col flex-1 gap-8 z-[3]">
+                                            {/* Role Title */}
+                                            <motion.h2
+                                                initial={{ opacity: 0, x: -30 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                className="font-sink text-[clamp(2.5rem,4vw,4rem)] font-black text-black tracking-[0.05em] leading-[1] text-left"
+                                                style={{ color: 'black' }}
+                                            >
+                                                {selectedMember.role}
+                                            </motion.h2>
+
+                                            {/* Location Tag */}
+                                            <div className="font-norwige text-sm font-bold tracking-[0.2em] uppercase text-black">
+                                                BASED IN {selectedMember.location.toUpperCase()}
+                                            </div>
+
+                                            <div className="w-full h-[1px] bg-black/20 my-2"></div>
+
+                                            {/* Skills */}
+                                            <div className="flex flex-col gap-1">
+                                                {selectedMember.skills.map((skill, index) => (
+                                                    <div key={index} className="font-sink text-xl text-black font-bold tracking-[0.02em]">
+                                                        /{skill.toUpperCase()}
+                                                    </div>
+                                                ))}
+                                            </div>
+
+                                            <div className="h-8"></div>
+
+                                            {/* Grid Info */}
+                                            <div className="grid grid-cols-2 gap-8 w-full max-w-3xl">
+                                                {selectedMember.specialties && (
+                                                    <div>
+                                                        <h3 className="font-sink text-lg font-black text-black mb-3 tracking-[0.1em]">SPECIALTIES</h3>
+                                                        <p className="font-norwige text-sm text-[#333] leading-relaxed">{selectedMember.specialties}</p>
+                                                    </div>
+                                                )}
+
+                                                <div className="flex flex-col gap-6">
+                                                    {selectedMember.tools && (
+                                                        <div>
+                                                            <h3 className="font-sink text-lg font-black text-black mb-3 tracking-[0.1em]">TOOLS</h3>
+                                                            {selectedMember.tools.map((t, i) => (
+                                                                <div key={i} className="font-norwige text-sm text-[#333]">• {t}</div>
+                                                            ))}
+                                                        </div>
+                                                    )}
+
+                                                    {selectedMember.keyContributions && (
+                                                        <div>
+                                                            <h3 className="font-sink text-lg font-black text-black mb-3 tracking-[0.1em]">KEY CONTRIBUTIONS</h3>
+                                                            {selectedMember.keyContributions.map((c, i) => (
+                                                                <div key={i} className="font-norwige text-sm text-[#333]">• {c}</div>
+                                                            ))}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Right Column: Image */}
+                                        <div className="flex-shrink-0 z-[4]">
+                                            <motion.div
+                                                layoutId={`card-${selectedMember.image}`}
+                                                className="relative w-[350px] aspect-[4/5] rounded-2xl overflow-hidden"
+                                                style={{
+                                                    border: `3px solid rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.6)`,
+                                                    boxShadow: `0 15px 50px rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.5), 0 5px 20px rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.4), 0 0 0 1px rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.2)`
+                                                }}
+                                            >
+                                                <img
+                                                    src={selectedMember.image}
+                                                    alt={selectedMember.name}
+                                                    className="w-full h-full object-cover object-center"
+                                                    style={{ transform: selectedMember.imageRotation ? `rotate(${selectedMember.imageRotation}deg)` : undefined }}
+                                                />
+                                            </motion.div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                {/* Vertical Team Category Navigation (Keep absolute on desktop, hide on mobile) */}
+                                <div className="hidden lg:flex flex-col gap-4 absolute left-5 top-1/2 -translate-y-1/2 z-[101]">
+                                    <button
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setShowQuote(false);
+                                            setActiveCategory("All");
+                                            setSelectedMember(null);
+                                        }}
+                                        className={`writing-vertical-rl transition-all duration-300 p-8 rounded-xl border-none font-norwige font-black tracking-[0.1em] cursor-pointer text-xl shadow-lg
+                                        ${activeCategory === "All" ? "bg-white text-black" : "bg-black/80 text-white"}`}
+                                    >
+                                        ALL
+                                    </button>
+                                    {categories.map((cat) => (
+                                        <button
+                                            key={cat}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setShowQuote(false);
+                                                setActiveCategory(cat);
+                                                setSelectedMember(null);
+                                            }}
+                                            className={`writing-vertical-rl transition-all duration-300 p-8 rounded-xl border-none font-norwige font-black tracking-[0.1em] cursor-pointer text-xl shadow-lg
+                                            ${activeCategory === cat ? "bg-white text-black" : "bg-black/80 text-white"}`}
+                                        >
+                                            {cat.toUpperCase()}
+                                        </button>
+                                    ))}
+                                </div>
+
+
+                                {/* Secret Quote Button (Floating) */}
+                                {selectedMember.secretQuote && (
+                                    <>
+                                        <motion.button
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setShowQuote(!showQuote);
+                                            }}
+                                            whileHover={{ scale: 1.1, rotate: 15 }}
+                                            whileTap={{ scale: 0.9 }}
+                                            animate={{
+                                                y: [0, -10, 0],
+                                            }}
+                                            transition={{
+                                                y: {
+                                                    duration: 2,
+                                                    repeat: Infinity,
+                                                    ease: "easeInOut"
+                                                }
+                                            }}
+                                            className="fixed right-6 bottom-6 md:absolute md:right-[120px] md:bottom-[40px] w-[50px] h-[50px] rounded-full border-none cursor-pointer flex items-center justify-center z-[101] text-2xl shadow-[0_4px_15px_rgba(255,215,0,0.4)]"
+                                            style={{
+                                                background: 'linear-gradient(135deg, #FFD700, #FFA500)',
+                                            }}
+                                        >
+                                            💭
+                                        </motion.button>
+
+                                        {/* Quote Tooltip */}
+                                        <AnimatePresence>
+                                            {showQuote && (
+                                                <motion.div
+                                                    initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                    exit={{ opacity: 0, y: 20, scale: 0.8 }}
+                                                    transition={{ duration: 0.3 }}
+                                                    className="fixed right-6 bottom-20 md:absolute md:right-[120px] md:bottom-[100px] p-6 rounded-[20px] max-w-[300px] z-[102] shadow-2xl"
+                                                    style={{
+                                                        background: 'linear-gradient(135deg, #FFD700, #FFA500)',
+                                                    }}
+                                                >
+                                                    <p className="font-norwige text-base font-semibold leading-relaxed text-black m-0">
+                                                        {selectedMember.secretQuote}
+                                                    </p>
+                                                    {/* Triangle pointer */}
+                                                    <div className="absolute -bottom-2 right-4 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] border-t-[#FFA500]" />
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </>
+                                )}
+                            </div>
+                        </motion.div>
+                    )
+                }
+            </AnimatePresence >
 
             <style jsx>{`
                 .marquee-row {
@@ -1023,7 +828,7 @@ const TeamSection: React.FC = () => {
 
                 h2 {
                     font-family: 'sink', sans-serif;
-                    font-size: clamp(3rem, 6vw, 6rem);
+                    font-size: clamp(2rem, 5vw, 4.5rem);
                     font-weight: 900;
                     color: #F7F2E4;
                     margin: 0;
@@ -1044,7 +849,7 @@ const TeamSection: React.FC = () => {
                     padding: 40px 20px;
                     border-radius: 20px;
                     border: none;
-                    font-size: clamp(1.5rem, 3vw, 2.5rem);
+                    font-size: clamp(1rem, 2.5vw, 1.8rem);
                     font-weight: 900;
                     font-family: 'sink', sans-serif;
                     transition: all 0.3s ease;
@@ -1052,12 +857,26 @@ const TeamSection: React.FC = () => {
                     white-space: nowrap;
                     flex-shrink: 0;
                     letter-spacing: 0.1em;
-                    height: 338px;
+                    height: 253px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     position: relative;
                     overflow: hidden;
+                }
+
+                @media (max-width: 1024px) {
+                    .category-button {
+                        height: 197px;
+                        padding: 30px 15px;
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    .category-button {
+                        height: 135px;
+                        padding: 20px 10px;
+                    }
                 }
                 
                 .category-button::before {
@@ -1096,22 +915,22 @@ const TeamSection: React.FC = () => {
 
                 @media (max-width: 1024px) {
                     .image-card {
-                        width: 400px !important;
-                        height: 225px !important;
+                        width: 350px !important;
+                        height: 197px !important;
                     }
                 }
 
                 @media (max-width: 768px) {
                     .image-card {
-                        width: 300px !important;
-                        height: 169px !important;
+                        width: 240px !important;
+                        height: 135px !important;
                     }
                     .text-block, .team-block {
                        padding: 0 20px;
                     }
                 }
             `}</style>
-        </section>
+        </>
     );
 };
 

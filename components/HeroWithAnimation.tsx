@@ -45,7 +45,7 @@ const HeroOverlay = styled.div<{ $isVisible: boolean }>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 80px 20px;
+  padding: 20px;
   color: white;
   font-family: 'ProximaNovaBlack', sans-serif;
   pointer-events: none;
@@ -53,8 +53,8 @@ const HeroOverlay = styled.div<{ $isVisible: boolean }>`
   opacity: ${props => props.$isVisible ? 1 : 0};
   transition: opacity 0.5s ease-out;
 
-  @media (max-width: 768px) {
-    padding: 60px 10px;
+  @media (min-width: 768px) {
+    padding: 80px 20px;
   }
 `;
 
@@ -69,39 +69,49 @@ const TextOverlay = styled.div<{ $isVisible: boolean }>`
   display: ${props => props.$isVisible ? 'flex' : 'none'};
   align-items: center;
   justify-content: center;
-  gap: 2rem;
-  padding: 0 5%;
+  gap: 1rem;
+  padding: 0 1rem;
+
+  @media (min-width: 768px) {
+    gap: 10rem;
+    padding: 0 5%;
+  }
 `;
 
 const CreativeText = styled.div`
   color: white;
   font-family: 'sink', sans-serif;
-  font-size: 4.5rem;
+  font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-align: right;
   flex: 1;
   max-width: 50%;
   
-  @media (max-width: 768px) {
-    font-size: 2.8rem;
+  @media (min-width: 768px) {
+    font-size: 7rem;
   }
 `;
 
 const ChangingWord = styled.div`
   color: white;
   font-family: 'Norwige Light', sans-serif;
-  font-size: 4rem;
+  font-size: 2.2rem;
   font-weight: 300;
   letter-spacing: 0.05em;
   text-align: left;
   flex: 1;
   max-width: 50%;
   
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
+  @media (min-width: 768px) {
+    font-size: 6rem;
+  }
+  @media (min-width: 768px) {
+    font-size: 6rem;
   }
 `;
+
+
 
 const Logo = styled.div`
   position: absolute;
@@ -150,6 +160,7 @@ const HeroWithAnimation: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const creativeRef = useRef<HTMLDivElement>(null);
   const wordRef = useRef<HTMLDivElement>(null);
+  const isFirstRun = useRef(true);
   const [showHero, setShowHero] = useState(true);
   const [currentWord, setCurrentWord] = useState("Identity");
   const [dimOpacity, setDimOpacity] = useState(0);
@@ -252,10 +263,22 @@ const HeroWithAnimation: React.FC = () => {
 
   // Animate the changing word
   useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
+
     if (wordRef.current) {
+      // Fade from bottom to up
       gsap.fromTo(wordRef.current,
-        { opacity: 0, x: 20 },
-        { opacity: 1, x: 0, duration: 0.6, ease: "power2.out" }
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }
+      );
+
+      // Shine animation (background gradient movement)
+      gsap.fromTo(wordRef.current,
+        { backgroundPosition: "200% center" },
+        { backgroundPosition: "-200% center", duration: 1, ease: "power2.inOut" }
       );
     }
   }, [currentWord]);
@@ -272,13 +295,12 @@ const HeroWithAnimation: React.FC = () => {
           />
         </Logo>
         <Heading>
-          <div style={{ fontSize: '3rem', fontWeight: 'bold', lineHeight: '1.2' }}>
+          <div className="text-3xl md:text-5xl font-bold leading-tight md:leading-[1.2]">
             CREATIVE<br />STUDIO
           </div>
         </Heading>
       </HeroOverlay>
 
-      {/* Text Animation */}
       <TextOverlay $isVisible={dimOpacity < 1}>
         <CreativeText ref={creativeRef}>Creative</CreativeText>
         <ChangingWord ref={wordRef}>{currentWord}</ChangingWord>

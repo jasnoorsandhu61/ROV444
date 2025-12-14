@@ -9,19 +9,38 @@ const DigiMag = () => {
   return (
     <div className="w-full p-2 sm:p-4 px-6 sm:px-12 md:px-16 mt-8 sm:mt-12 md:mt-16 mb-16 sm:mb-20 md:mb-24" id="digi-mag">
       {/* Header */}
-      <div className="flex justify-start items-center gap-2 sm:gap-4 mb-8 sm:mb-2 md:mb-4 pl-4 sm:pl-0">
-        <TrueFocus
-          sentence="DIGITAL MAGAZINE"
-          manualMode={true}
-          blurAmount={5}
-          borderColor="rgba(6, 247, 255, 0.7)"
-          glowColor="rgba(255, 255, 255, 0.6)"
-          animationDuration={0.15}
-          pauseBetweenAnimations={1.5}
-          fontSize="clamp(7rem, 8vw, 12rem)"
-          fontFamily="Sink"
-          letterSpacing="0.05em"
-        />
+      <div className="w-full flex justify-center md:justify-start items-center gap-2 sm:gap-4 mb-8 sm:mb-2 md:mb-4 pl-0 md:pl-4">
+        {/* Desktop View: Hover enabled, smaller fit */}
+        <div className="hidden md:block w-full">
+          <TrueFocus
+            sentence="DIGITAL MAGAZINE"
+            manualMode={true}
+            blurAmount={5}
+            borderColor="rgba(6, 247, 255, 0.7)"
+            glowColor="rgba(255, 255, 255, 0.6)"
+            animationDuration={0.15}
+            pauseBetweenAnimations={1.5}
+            fontSize="clamp(3rem, 6vw, 8rem)"
+            fontFamily="Sink"
+            letterSpacing="0.05em"
+          />
+        </div>
+
+        {/* Mobile View: Auto animation, large font to stack */}
+        <div className="md:hidden w-full flex justify-center px-4">
+          <TrueFocus
+            sentence="DIGITAL MAGAZINE"
+            manualMode={false}
+            blurAmount={5}
+            borderColor="rgba(6, 247, 255, 0.7)"
+            glowColor="rgba(255, 255, 255, 0.6)"
+            animationDuration={0.15}
+            pauseBetweenAnimations={1.5}
+            fontSize={["19vw", "15vw"]}
+            fontFamily="Sink"
+            letterSpacing="0.05em"
+          />
+        </div>
       </div>
 
       {/* Bento Grid */}

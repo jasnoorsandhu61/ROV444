@@ -11,7 +11,7 @@ interface TrueFocusProps {
     glowColor?: string;
     animationDuration?: number;
     pauseBetweenAnimations?: number;
-    fontSize?: string;
+    fontSize?: string | string[];
     fontFamily?: string;
     letterSpacing?: string;
 }
@@ -86,7 +86,7 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
             width: activeRect.width,
             height: activeRect.height,
         });
-    }, [isMounted, currentIndex, words.length]);
+    }, [isMounted, currentIndex, words.length, fontSize]);
 
     const handleMouseEnter = (index: number) => {
         if (!isMounted || !manualMode) return;
@@ -109,7 +109,11 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
                     <span
                         key={index}
                         className="relative font-black cursor-pointer"
-                        style={{ fontSize, fontFamily, letterSpacing }}
+                        style={{
+                            fontSize: Array.isArray(fontSize) ? fontSize[index % fontSize.length] : fontSize,
+                            fontFamily,
+                            letterSpacing
+                        }}
                     >
                         {word}
                     </span>
@@ -125,13 +129,15 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
         >
             {words.map((word, index) => {
                 const isActive = index === currentIndex;
+                const currentFontSize = Array.isArray(fontSize) ? fontSize[index % fontSize.length] : fontSize;
+
                 return (
                     <span
                         key={index}
                         ref={(el) => (wordRefs.current[index] = el)}
                         className="relative font-black cursor-pointer"
                         style={{
-                            fontSize,
+                            fontSize: currentFontSize,
                             fontFamily,
                             letterSpacing,
                             filter: isActive
