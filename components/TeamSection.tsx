@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useState, useCallback } from "react";
+
+import React, { useState, useCallback, useRef } from "react";
+import TeamGallery from "./TeamGallery";
 import { motion, AnimatePresence } from "framer-motion";
 
 type Category = "All" | "Creative" | "Tech" | "Systems";
@@ -24,7 +26,7 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
     {
         id: 1,
-        image: "/teammembers/basutm.JPG",
+        image: "/teammembers/basutm.png",
         category: "Creative",
         name: "Basu",
         role: "FOUNDER & CREATIVE DIRECTOR",
@@ -42,7 +44,7 @@ const teamMembers: TeamMember[] = [
     },
     {
         id: 2,
-        image: "/teammembers/jahnavitm.jpg",
+        image: "/teammembers/jahnavitm.png",
         category: "Creative",
         name: "Jahnavi",
         role: "HEAD OF DESIGN",
@@ -60,7 +62,7 @@ const teamMembers: TeamMember[] = [
     },
     {
         id: 3,
-        image: "/teammembers/vaishtm.jpg",
+        image: "/teammembers/vaishnavitm.png",
         category: "Creative",
         name: "Vaishnavi",
         role: "CREATIVE DIRECTOR & VIDEO STRATEGIST",
@@ -77,7 +79,7 @@ const teamMembers: TeamMember[] = [
     },
     {
         id: 4,
-        image: "/teammembers/tanvitm.jpg",
+        image: "/teammembers/tanvitm.png",
         category: "Creative",
         name: "Tanvi",
         role: "DESIGN & SOCIAL MEDIA STRATEGIST",
@@ -95,7 +97,7 @@ const teamMembers: TeamMember[] = [
     },
     {
         id: 5,
-        image: "/teammembers/chamantm.jpg",
+        image: "/teammembers/chamantm.png",
         category: "Creative",
         name: "Chaman",
         role: "VIDEO EDITOR & MOTION DESIGNER",
@@ -109,12 +111,11 @@ const teamMembers: TeamMember[] = [
             "Brings fresh creative ideas that push R.O.V.'s video work forward while maintaining clear communication.",
             "Ensures reliable execution across all projects with rapid turnaround production."
         ],
-        shadowColor: "200, 100, 50",
-        imageRotation: -90
+        shadowColor: "200, 100, 50"
     },
     {
         id: 6,
-        image: "/teammembers/davidtm.jpeg",
+        image: "/teammembers/davidtm.png",
         category: "Creative",
         name: "David",
         role: "3D CREATIVE DIRECTOR",
@@ -132,7 +133,7 @@ const teamMembers: TeamMember[] = [
     },
     {
         id: 7,
-        image: "/teammembers/dakshatm.jpg",
+        image: "/teammembers/dakshatm.png",
         category: "Tech",
         name: "Daksha",
         role: "HEAD OF DEVELOPMENT",
@@ -150,7 +151,7 @@ const teamMembers: TeamMember[] = [
     },
     {
         id: 8,
-        image: "/teammembers/jasnoortm.jpg",
+        image: "/teammembers/jasnoortm.png",
         category: "Tech",
         name: "Jasnoor",
         role: "DEVELOPER & FRONTEND SPECIALIST",
@@ -168,7 +169,7 @@ const teamMembers: TeamMember[] = [
     },
     {
         id: 9,
-        image: "/teammembers/basutm.JPG",
+        image: "/teammembers/basutm.png",
         category: "Tech",
         name: "Basu",
         role: "FOUNDER & CREATIVE DIRECTOR",
@@ -185,7 +186,7 @@ const teamMembers: TeamMember[] = [
     },
     {
         id: 10,
-        image: "/teammembers/suchettm.JPG",
+        image: "/teammembers/suchettm.png",
         category: "Tech",
         name: "Suchet",
         role: "CO-FOUNDER & SYSTEMS ARCHITECT",
@@ -201,8 +202,25 @@ const teamMembers: TeamMember[] = [
         ]
     },
     {
+        id: 12,
+        image: "/teammembers/suchettm.png",
+        category: "Systems",
+        name: "Suchet",
+        role: "CO-FOUNDER & SYSTEMS ARCHITECT",
+        skills: ["Operations Strategy", "AI Systems Development", "Financial Management", "Sales & Client Relations", "Process Automation"],
+        location: "Atlanta",
+        secretQuote: "Real Job: Getting whatever the fuck needs to be done, done",
+        specialties: "Joined as co-founder to build the operational backbone of R.O.V. Manages finances, sales pipelines, and client communications while developing AI-driven systems that automate workflows and scale the studio's capabilities.",
+        tools: ["n8n, Make/Zapier", "ChatGPT & AI Tools", "CRM & Invoicing Systems", "Financial Planning Tools"],
+        keyContributions: [
+            "Built end-to-end AI systems for research, documentation, and workflow automation.",
+            "Oversees financial strategy, sales outreach, and client relationship management.",
+            "Defines systematic direction and operational processes that keep R.O.V. running efficiently."
+        ]
+    },
+    {
         id: 11,
-        image: "/teammembers/dakshatm.jpg",
+        image: "/teammembers/dakshatm.png",
         category: "Systems",
         name: "Daksha",
         role: "HEAD OF DEVELOPMENT",
@@ -218,21 +236,21 @@ const teamMembers: TeamMember[] = [
         ]
     },
     {
-        id: 12,
-        image: "/teammembers/suchettm.JPG",
-        category: "Systems",
-        name: "Suchet",
-        role: "CO-FOUNDER & SYSTEMS ARCHITECT",
-        skills: ["Operations Strategy", "AI Systems Development", "Financial Management", "Sales & Client Relations", "Process Automation"],
+        id: 13,
+        image: "/teammembers/kavyatm.png",
+        category: "Creative",
+        name: "Kavya",
+        role: "UI/UX DESIGNER & DESIGN SYSTEMS SPECIALIST",
+        skills: ["UI/UX Design", "Design Systems", "Web Design", "Design Infrastructure", "Brand Guidelines", "Design Standards"],
         location: "Atlanta",
-        secretQuote: "Real Job: Getting whatever the fuck needs to be done, done",
-        specialties: "Joined as co-founder to build the operational backbone of R.O.V. Manages finances, sales pipelines, and client communications while developing AI-driven systems that automate workflows and scale the studio's capabilities.",
-        tools: ["n8n, Make/Zapier", "ChatGPT & AI Tools", "CRM & Invoicing Systems", "Financial Planning Tools"],
+        specialties: "SCAD-trained designer who brings enterprise-level design rigor from work with major brands like Porsche, Lowe's, and UBS. Helps R.O.V. build robust web design systems, infrastructure, and guidelines that ensure design quality and consistency across all projects.",
+        tools: ["Figma", "Canva", "Design System Documentation Tools"],
         keyContributions: [
-            "Built end-to-end AI systems for research, documentation, and workflow automation.",
-            "Oversees financial strategy, sales outreach, and client relationship management.",
-            "Defines systematic direction and operational processes that keep R.O.V. running efficiently."
-        ]
+            "Establishes design foundations and systematic approaches that elevate R.O.V.'s work quality.",
+            "Brings high-caliber brand experience to create rigorous design guidelines.",
+            "Web design frameworks and infrastructure that keep projects consistent and scalable as the studio grows."
+        ],
+        shadowColor: "100, 100, 100"
     },
 ];
 
@@ -274,7 +292,7 @@ const TeamSection: React.FC = () => {
                         width: '100%',
                         height: '100%',
                         objectFit: 'cover',
-                        objectPosition: src.includes('davidtm') ? 'center top' : 'center center',
+                        objectPosition: 'center center',
                         display: 'block',
                         transform: rotation !== 0 ? `rotate(${rotation}deg)` : undefined
                     }}
@@ -428,6 +446,7 @@ const TeamSection: React.FC = () => {
                                             TECH
                                         </button>
                                         <ImageCard src={teamMembers[1].image} alt="Jahnavi" name={teamMembers[1].name} role={teamMembers[1].role} onClick={() => setSelectedMember(teamMembers[1])} />
+                                        <ImageCard src={teamMembers[12].image} alt="Kavya" name={teamMembers[12].name} role={teamMembers[12].role} onClick={() => setSelectedMember(teamMembers[12])} />
                                         <div className="text-block">
                                             <h2>THE</h2>
                                         </div>
@@ -464,23 +483,16 @@ const TeamSection: React.FC = () => {
 
                 {activeCategory !== "All" && (
                     <motion.div
-                        key="stationary"
+                        key={activeCategory}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="flex flex-wrap justify-center gap-8 max-w-[1400px] p-8"
+                        className="w-full flex justify-center pb-20"
                     >
-                        {filteredMembers.map((member) => (
-                            <ImageCard
-                                key={member.id}
-                                src={member.image}
-                                alt={member.name}
-                                stationary={true}
-                                onClick={() => setSelectedMember(member)}
-                                name={member.name}
-                                rotation={member.imageRotation}
-                            />
-                        ))}
+                        <TeamGallery
+                            members={filteredMembers}
+                            onMemberSelect={(member) => setSelectedMember(member)}
+                        />
                     </motion.div>
                 )}
             </div>
@@ -566,11 +578,11 @@ const TeamSection: React.FC = () => {
                                     right: '0',
                                     zIndex: 1,
                                     fontFamily: 'sink, sans-serif',
-                                    fontSize: 'clamp(2rem, 6vw, 4.5rem)',
+                                    fontSize: 'clamp(1.5rem, 3.5vw, 3rem)',
                                     fontWeight: '900',
                                     color: 'black',
                                     letterSpacing: '0.05em',
-                                    lineHeight: '0.9',
+                                    lineHeight: '1.1',
                                     textAlign: 'center',
                                     paddingLeft: '0',
                                 }}
@@ -601,7 +613,7 @@ const TeamSection: React.FC = () => {
                                         width: '100%',
                                         height: '100%',
                                         objectFit: 'cover',
-                                        objectPosition: selectedMember.image.includes('davidtm') ? 'center top' : 'center center',
+                                        objectPosition: 'center center',
                                         transform: selectedMember.imageRotation ? `rotate(${selectedMember.imageRotation}deg)` : undefined
                                     }}
                                 />
