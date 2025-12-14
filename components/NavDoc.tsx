@@ -13,9 +13,9 @@ export function NavigationDock({ className }: NavigationDockProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const links = [
-    { title: "home", to: "hero", isLink: false },
-    { title: "services", to: "services", isLink: false },
-    { title: "contact us", to: null, isLink: false },
+    { title: "home", to: "/", isLink: true },
+    { title: "services", to: "/#services", isLink: true },
+    { title: "contact us", to: "https://calendly.com/rangeofviewmusic/30min", isLink: true },
   ];
 
   const scrollToSection = (id: string) => {

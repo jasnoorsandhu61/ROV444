@@ -62,7 +62,7 @@ const teamMembers: TeamMember[] = [
     },
     {
         id: 3,
-        image: "/teammembers/vaishnavitm.png",
+        image: "/teammembers/vaishnavitm.png?v=3",
         category: "Creative",
         name: "Vaishnavi",
         role: "CREATIVE DIRECTOR & VIDEO STRATEGIST",
@@ -252,6 +252,24 @@ const teamMembers: TeamMember[] = [
         ],
         shadowColor: "100, 100, 100"
     },
+    {
+        id: 14,
+        image: "/teammembers/jinwontm.png",
+        category: "Creative",
+        name: "Jiwon",
+        role: "UI/UX DESIGNER & ILLUSTRATOR",
+        skills: ["UI/UX Design", "Design Strategy", "Illustration", "Interface Design", "User Experience", "Visual Design Systems"],
+        location: "Savannah",
+        secretQuote: "Design that makes every touchpoint feel intentional. ✨",
+        specialties: "SCAD-trained design talent based in Savannah with exceptional vision for overall design strategy and execution. Brings civic design experience from work on marta's new app, combining ui/ux expertise with illustration skills to create interfaces that are both functional and visually distinctive.",
+        tools: ["Figma", "Adobe Creative Suite", "Illustration Tools"],
+        keyContributions: [
+            "Brings big-picture design vision and meticulous craft to client projects.",
+            "Leverages experience from high-impact public projects like MARTA's app redesign to elevate R.O.V.'s interface work.",
+            "Combines strategic UX thinking with custom illustration that makes every touchpoint feel intentional and engaging."
+        ],
+        shadowColor: "130, 100, 160"
+    },
 ];
 
 const categories: Category[] = ["Creative", "Tech", "Systems"];
@@ -408,7 +426,7 @@ const TeamSection: React.FC = () => {
                         exit={{ opacity: 0 }}
                         className="w-full"
                     >
-                        {/* Row 1 - Moving Left - Basu, Suchet, Daksha */}
+                        {/* Row 1 - Moving Left - Basu, Suchet, Daksha, Jahnavi */}
                         <div className="marquee-row">
                             <div className="marquee-track scroll-left">
                                 {[...Array(4)].map((_, i) => (
@@ -425,16 +443,13 @@ const TeamSection: React.FC = () => {
                                             CREATIVE
                                         </button>
                                         <ImageCard src={teamMembers[6].image} alt="Daksha" name={teamMembers[6].name} role={teamMembers[6].role} onClick={() => setSelectedMember(teamMembers[6])} />
-                                        <div className="text-block">
-                                            <h2>THE</h2>
-                                        </div>
-                                        <ImageCard src={teamMembers[0].image} alt="Basu" name={teamMembers[0].name} role={teamMembers[0].role} onClick={() => setSelectedMember(teamMembers[0])} />
+                                        <ImageCard src={teamMembers[1].image} alt="Jahnavi" name={teamMembers[1].name} role={teamMembers[1].role} onClick={() => setSelectedMember(teamMembers[1])} />
                                     </React.Fragment>
                                 ))}
                             </div>
                         </div>
 
-                        {/* Row 2 - Moving Right - Jahnavi, Vaishnavi, Tanvi */}
+                        {/* Row 2 - Moving Right - Kavya, Jiwon, Vaishnavi, Tanvi */}
                         <div className="marquee-row">
                             <div className="marquee-track scroll-right">
                                 {[...Array(4)].map((_, i) => (
@@ -445,8 +460,8 @@ const TeamSection: React.FC = () => {
                                         >
                                             TECH
                                         </button>
-                                        <ImageCard src={teamMembers[1].image} alt="Jahnavi" name={teamMembers[1].name} role={teamMembers[1].role} onClick={() => setSelectedMember(teamMembers[1])} />
                                         <ImageCard src={teamMembers[12].image} alt="Kavya" name={teamMembers[12].name} role={teamMembers[12].role} onClick={() => setSelectedMember(teamMembers[12])} />
+                                        <ImageCard src={teamMembers[13].image} alt="Jiwon" name={teamMembers[13].name} role={teamMembers[13].role} onClick={() => setSelectedMember(teamMembers[13])} />
                                         <div className="text-block">
                                             <h2>THE</h2>
                                         </div>
@@ -457,7 +472,7 @@ const TeamSection: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* Row 3 - Moving Left - David, Chaman, Jasnoor */}
+                        {/* Row 3 - Moving Left - David, Chaman, Jasnoor, Suchet */}
                         <div className="marquee-row">
                             <div className="marquee-track scroll-left">
                                 {[...Array(4)].map((_, i) => (
@@ -468,6 +483,7 @@ const TeamSection: React.FC = () => {
                                             <h2>TEAM</h2>
                                         </div>
                                         <ImageCard src={teamMembers[7].image} alt="Jasnoor" name={teamMembers[7].name} role={teamMembers[7].role} onClick={() => setSelectedMember(teamMembers[7])} />
+                                        <ImageCard src={teamMembers[10].image} alt="Suchet" name={teamMembers[10].name} role={teamMembers[10].role} onClick={() => setSelectedMember(teamMembers[10])} />
                                         <button
                                             className="category-button"
                                             onClick={() => setActiveCategory("Systems")}
