@@ -4,6 +4,7 @@
 import React, { useState, useCallback, useRef } from "react";
 import TeamGallery from "./TeamGallery";
 import { motion, AnimatePresence } from "framer-motion";
+import { MousePointer2 } from "lucide-react";
 
 type Category = "All" | "Creative" | "Tech" | "Systems";
 
@@ -530,10 +531,7 @@ const TeamSection: React.FC = () => {
                                     ×
                                 </button>
 
-                                {/* Counter */}
-                                <div className="absolute top-4 left-4 md:top-10 md:left-10 font-sink text-sm md:text-base text-black tracking-widest z-[102]">
-                                    {filteredMembers.findIndex(m => m.id === selectedMember.id) + 1}/{filteredMembers.length}
-                                </div>
+
 
                                 {/* Main Content Container */}
                                 <div className="relative w-full max-w-7xl mx-auto min-h-screen md:min-h-[900px] flex flex-col md:block p-6 pt-20 md:p-0">
@@ -559,8 +557,8 @@ const TeamSection: React.FC = () => {
                                             layoutId={`card-mobile-${selectedMember.image}`}
                                             className="relative w-full max-w-[300px] aspect-[4/5] rounded-2xl overflow-hidden mb-8"
                                             style={{
-                                                border: `3px solid rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.6)`,
-                                                boxShadow: `0 15px 50px rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.5)`
+                                                border: '1px solid rgba(255, 255, 255, 0.2)',
+                                                boxShadow: `0 20px 60px rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.5), inset 0 0 20px rgba(255,255,255,0.05)`
                                             }}
                                         >
                                             <img
@@ -574,7 +572,7 @@ const TeamSection: React.FC = () => {
                                         {/* Mobile: Skills */}
                                         <div className="flex flex-wrap justify-center gap-2 mb-8">
                                             {selectedMember.skills.map((skill, index) => (
-                                                <div key={index} className="font-sink text-lg text-black font-bold tracking-[0.02em]">
+                                                <div key={index} className="font-norwige text-lg text-black font-bold tracking-[0.02em]">
                                                     /{skill.toUpperCase()}
                                                 </div>
                                             ))}
@@ -610,7 +608,7 @@ const TeamSection: React.FC = () => {
                                     </div>
 
                                     {/* --- DESKTOP VIEW (Flex Row) --- */}
-                                    <div className="hidden md:flex flex-row items-start justify-between w-full h-full pt-[60px] px-[5%] gap-8">
+                                    <div className="hidden md:flex flex-row items-start justify-between w-full h-full pt-[60px] pl-32 pr-[5%] gap-8">
 
                                         {/* Left Column: Title, Skills, Info */}
                                         <div className="flex flex-col flex-1 gap-8 z-[3]">
@@ -634,7 +632,7 @@ const TeamSection: React.FC = () => {
                                             {/* Skills */}
                                             <div className="flex flex-col gap-1">
                                                 {selectedMember.skills.map((skill, index) => (
-                                                    <div key={index} className="font-sink text-xl text-black font-bold tracking-[0.02em]">
+                                                    <div key={index} className="font-norwige text-xl text-black font-bold tracking-[0.02em]">
                                                         /{skill.toUpperCase()}
                                                     </div>
                                                 ))}
@@ -679,8 +677,8 @@ const TeamSection: React.FC = () => {
                                                 layoutId={`card-${selectedMember.image}`}
                                                 className="relative w-[350px] aspect-[4/5] rounded-2xl overflow-hidden"
                                                 style={{
-                                                    border: `3px solid rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.6)`,
-                                                    boxShadow: `0 15px 50px rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.5), 0 5px 20px rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.4), 0 0 0 1px rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.2)`
+                                                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                                                    boxShadow: `0 25px 60px -5px rgba(${selectedMember.shadowColor || '101, 67, 33'}, 0.6), 0 0 0 1px rgba(255,255,255,0.1)`
                                                 }}
                                             >
                                                 <img
@@ -704,7 +702,7 @@ const TeamSection: React.FC = () => {
                                             setActiveCategory("All");
                                             setSelectedMember(null);
                                         }}
-                                        className={`writing-vertical-rl transition-all duration-300 p-8 rounded-xl border-none font-norwige font-black tracking-[0.1em] cursor-pointer text-xl shadow-lg
+                                        className={`[writing-mode:vertical-rl] rotate-180 transition-all duration-300 p-4 rounded-xl border-none font-norwige font-black tracking-[0.1em] cursor-pointer text-sm shadow-lg
                                         ${activeCategory === "All" ? "bg-white text-black" : "bg-black/80 text-white"}`}
                                     >
                                         ALL
@@ -718,7 +716,7 @@ const TeamSection: React.FC = () => {
                                                 setActiveCategory(cat);
                                                 setSelectedMember(null);
                                             }}
-                                            className={`writing-vertical-rl transition-all duration-300 p-8 rounded-xl border-none font-norwige font-black tracking-[0.1em] cursor-pointer text-xl shadow-lg
+                                            className={`[writing-mode:vertical-rl] rotate-180 transition-all duration-300 p-4 rounded-xl border-none font-norwige font-black tracking-[0.1em] cursor-pointer text-sm shadow-lg
                                             ${activeCategory === cat ? "bg-white text-black" : "bg-black/80 text-white"}`}
                                         >
                                             {cat.toUpperCase()}
@@ -747,12 +745,12 @@ const TeamSection: React.FC = () => {
                                                     ease: "easeInOut"
                                                 }
                                             }}
-                                            className="fixed right-6 bottom-6 md:absolute md:right-[120px] md:bottom-[40px] w-[50px] h-[50px] rounded-full border-none cursor-pointer flex items-center justify-center z-[101] text-2xl shadow-[0_4px_15px_rgba(255,215,0,0.4)]"
+                                            className="fixed right-6 bottom-6 md:absolute md:right-10 md:bottom-10 w-[50px] h-[50px] rounded-full border-none cursor-pointer flex items-center justify-center z-[101] text-2xl shadow-[0_4px_15px_rgba(0,0,0,0.5)]"
                                             style={{
-                                                background: 'linear-gradient(135deg, #FFD700, #FFA500)',
+                                                background: 'linear-gradient(135deg, #333, #000)',
                                             }}
                                         >
-                                            💭
+                                            <MousePointer2 className="text-white w-5 h-5" />
                                         </motion.button>
 
                                         {/* Quote Tooltip */}
@@ -763,16 +761,16 @@ const TeamSection: React.FC = () => {
                                                     animate={{ opacity: 1, y: 0, scale: 1 }}
                                                     exit={{ opacity: 0, y: 20, scale: 0.8 }}
                                                     transition={{ duration: 0.3 }}
-                                                    className="fixed right-6 bottom-20 md:absolute md:right-[120px] md:bottom-[100px] p-6 rounded-[20px] max-w-[300px] z-[102] shadow-2xl"
+                                                    className="fixed right-6 bottom-20 md:absolute md:right-10 md:bottom-24 p-6 rounded-[20px] max-w-[300px] z-[102] shadow-2xl"
                                                     style={{
-                                                        background: 'linear-gradient(135deg, #FFD700, #FFA500)',
+                                                        background: 'linear-gradient(135deg, #333, #000)',
                                                     }}
                                                 >
-                                                    <p className="font-norwige text-base font-semibold leading-relaxed text-black m-0">
+                                                    <p className="font-norwige text-base font-semibold leading-relaxed text-white m-0">
                                                         {selectedMember.secretQuote}
                                                     </p>
                                                     {/* Triangle pointer */}
-                                                    <div className="absolute -bottom-2 right-4 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] border-t-[#FFA500]" />
+                                                    <div className="absolute -bottom-2 right-4 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] border-t-[#000]" />
                                                 </motion.div>
                                             )}
                                         </AnimatePresence>

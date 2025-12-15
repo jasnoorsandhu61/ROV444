@@ -14,6 +14,7 @@ interface TrueFocusProps {
     fontSize?: string | string[];
     fontFamily?: string;
     letterSpacing?: string;
+    className?: string;
 }
 
 interface FocusRect {
@@ -34,6 +35,7 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
     fontSize = "4rem",
     fontFamily = "'Futura', sans-serif",
     letterSpacing = "normal",
+    className = "",
 }) => {
     const words = sentence.split(" ");
     const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -104,7 +106,7 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
     if (!isMounted) {
         // Render static content during SSR
         return (
-            <div className="relative flex gap-4 justify-center items-center flex-wrap">
+            <div className={`relative flex gap-4 items-center flex-wrap ${className || "justify-center"}`}>
                 {words.map((word, index) => (
                     <span
                         key={index}
@@ -124,7 +126,7 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
 
     return (
         <div
-            className="relative flex gap-4 justify-center items-center flex-wrap"
+            className={`relative flex gap-4 items-center flex-wrap ${className || "justify-center"}`}
             ref={containerRef}
         >
             {words.map((word, index) => {

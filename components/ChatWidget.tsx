@@ -2,17 +2,32 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { MessageCircle, X } from "lucide-react";
 
 type Role = "user" | "assistant";
 type Msg = { id: string; role: Role; text: string };
 
 export default function ChatWidget() {
+  const pathname = usePathname();
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (pathname === "/") {
+      setIsVisible(false);
+      const onLoaded = () => setIsVisible(true);
+      window.addEventListener("rov-home-loaded", onLoaded);
+      // Check if already loaded? No, event-based is safer given page.tsx logic
+      return () => window.removeEventListener("rov-home-loaded", onLoaded);
+    } else {
+      setIsVisible(true);
+    }
+  }, [pathname]);
 
   useEffect(() => {
     if (open) {
@@ -78,7 +93,7 @@ export default function ChatWidget() {
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          className="fixed bottom-28 md:bottom-6 right-6 h-14 w-14 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white flex items-center justify-center shadow-lg hover:bg-black/70 transition-all overflow-hidden group z-[9999]"
+          className={`fixed bottom-28 md:bottom-6 right-6 h-14 w-14 rounded-full bg-black/50 backdrop-blur-md border border-white/10 text-white flex items-center justify-center shadow-lg hover:bg-black/70 overflow-hidden group z-[9999] transition-all duration-1000 ease-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"}`}
           aria-label="Open chat"
         >
           {/* Shimmer effect */}

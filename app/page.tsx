@@ -83,6 +83,12 @@ export default function Home() {
     };
   }, [isLoading]);
 
+  useEffect(() => {
+    if (!isLoading) {
+      window.dispatchEvent(new Event("rov-home-loaded"));
+    }
+  }, [isLoading]);
+
   // Loading state with better transition
   if (isLoading) {
     return (

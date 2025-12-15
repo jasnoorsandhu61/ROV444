@@ -20,7 +20,7 @@ const DigiMag = () => {
             glowColor="rgba(255, 255, 255, 0.6)"
             animationDuration={0.15}
             pauseBetweenAnimations={1.5}
-            fontSize="clamp(3rem, 6vw, 8rem)"
+            fontSize="clamp(4rem, 10.5vw, 14rem)"
             fontFamily="Sink"
             letterSpacing="0.05em"
           />
